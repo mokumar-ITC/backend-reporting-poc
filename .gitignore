@@ -12,3 +12,4 @@
 appsettings*.json
 .env
 ./BIEmbedSystem.token.json
+BIEmbedSystem/token.json
