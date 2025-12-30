@@ -11,3 +11,4 @@
 # App settings & secrets
 appsettings*.json
 .env
+./BIEmbedSystem.token.json
