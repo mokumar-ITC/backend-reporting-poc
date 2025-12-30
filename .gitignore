@@ -2,6 +2,7 @@
 .vs/
 
 # Build output (VERY IMPORTANT)
+**/token.json
 **/bin/
 **/obj/
 
@@ -11,5 +12,3 @@
 # App settings & secrets
 appsettings*.json
 .env
-./BIEmbedSystem.token.json
-BIEmbedSystem/token.json
