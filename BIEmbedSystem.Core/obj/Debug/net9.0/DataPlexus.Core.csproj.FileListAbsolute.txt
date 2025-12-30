@@ -1,0 +1,11 @@
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Core\bin\Debug\net9.0\DataPlexus.Core.deps.json
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Core\bin\Debug\net9.0\DataPlexus.Core.dll
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Core\bin\Debug\net9.0\DataPlexus.Core.pdb
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Core\obj\Debug\net9.0\DataPlexus.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Core\obj\Debug\net9.0\DataPlexus.Core.AssemblyInfoInputs.cache
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Core\obj\Debug\net9.0\DataPlexus.Core.AssemblyInfo.cs
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Core\obj\Debug\net9.0\DataPlexus.Core.csproj.CoreCompileInputs.cache
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Core\obj\Debug\net9.0\DataPlexus.Core.dll
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Core\obj\Debug\net9.0\refint\DataPlexus.Core.dll
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Core\obj\Debug\net9.0\DataPlexus.Core.pdb
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Core\obj\Debug\net9.0\ref\DataPlexus.Core.dll

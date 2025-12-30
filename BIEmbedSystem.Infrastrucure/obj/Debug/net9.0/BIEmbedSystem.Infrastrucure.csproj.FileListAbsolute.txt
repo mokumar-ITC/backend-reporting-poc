@@ -1,0 +1,34 @@
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Infrastrucure\bin\Debug\net9.0\BIEmbedSystem.Infrastrucure.deps.json
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Infrastrucure\bin\Debug\net9.0\BIEmbedSystem.Infrastrucure.dll
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Infrastrucure\bin\Debug\net9.0\BIEmbedSystem.Infrastrucure.pdb
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Infrastrucure\bin\Debug\net9.0\BIEmbedSystem.Core.dll
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Infrastrucure\bin\Debug\net9.0\BIEmbedSystem.Core.pdb
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Infrastrucure\obj\Debug\net9.0\BIEmbedSystem.Infrastrucure.csproj.AssemblyReference.cache
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Infrastrucure\obj\Debug\net9.0\BIEmbedSystem.Infrastrucure.GeneratedMSBuildEditorConfig.editorconfig
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Infrastrucure\obj\Debug\net9.0\BIEmbedSystem.Infrastrucure.AssemblyInfoInputs.cache
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Infrastrucure\obj\Debug\net9.0\BIEmbedSystem.Infrastrucure.AssemblyInfo.cs
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Infrastrucure\obj\Debug\net9.0\BIEmbedSystem.Infrastrucure.csproj.CoreCompileInputs.cache
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Infrastrucure\obj\Debug\net9.0\BIEmbedS.65AD5C97.Up2Date
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Infrastrucure\obj\Debug\net9.0\BIEmbedSystem.Infrastrucure.dll
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Infrastrucure\obj\Debug\net9.0\refint\BIEmbedSystem.Infrastrucure.dll
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Infrastrucure\obj\Debug\net9.0\BIEmbedSystem.Infrastrucure.pdb
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Infrastrucure\obj\Debug\net9.0\ref\BIEmbedSystem.Infrastrucure.dll
+C:\Users\MOKUMAR\Desktop\Publish\BIEmbedSystem.Infrastrucure.deps.json
+C:\Users\MOKUMAR\Desktop\Publish\BIEmbedSystem.Infrastrucure.dll
+C:\Users\MOKUMAR\Desktop\Publish\BIEmbedSystem.Infrastrucure.pdb
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Infrastrucure\obj\Debug\net9.0\BIEmbedSystem.Infrastrucure.csproj.AssemblyReference.cache
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Infrastrucure\obj\Debug\net9.0\BIEmbedSystem.Infrastrucure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Infrastrucure\obj\Debug\net9.0\BIEmbedSystem.Infrastrucure.AssemblyInfoInputs.cache
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Infrastrucure\obj\Debug\net9.0\BIEmbedSystem.Infrastrucure.AssemblyInfo.cs
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Infrastrucure\obj\Debug\net9.0\BIEmbedSystem.Infrastrucure.csproj.CoreCompileInputs.cache
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Infrastrucure\obj\Debug\net9.0\BIEmbedSystem.Infrastrucure.sourcelink.json
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Infrastrucure\bin\Debug\net9.0\BIEmbedSystem.Infrastrucure.deps.json
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Infrastrucure\bin\Debug\net9.0\BIEmbedSystem.Infrastrucure.dll
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Infrastrucure\bin\Debug\net9.0\BIEmbedSystem.Infrastrucure.pdb
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Infrastrucure\bin\Debug\net9.0\BIEmbedSystem.Core.dll
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Infrastrucure\bin\Debug\net9.0\BIEmbedSystem.Core.pdb
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Infrastrucure\obj\Debug\net9.0\BIEmbedS.65AD5C97.Up2Date
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Infrastrucure\obj\Debug\net9.0\BIEmbedSystem.Infrastrucure.dll
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Infrastrucure\obj\Debug\net9.0\refint\BIEmbedSystem.Infrastrucure.dll
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Infrastrucure\obj\Debug\net9.0\BIEmbedSystem.Infrastrucure.pdb
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Infrastrucure\obj\Debug\net9.0\ref\BIEmbedSystem.Infrastrucure.dll

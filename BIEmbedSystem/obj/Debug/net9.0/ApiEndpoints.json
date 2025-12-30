@@ -1,0 +1,3420 @@
+[
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.NotificationController",
+    "Method": "SendEmail",
+    "RelativePath": "api/Notification/send-email",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "recipients",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      },
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.FabricCapacityController",
+    "Method": "CreateScheduler",
+    "RelativePath": "api/v1/capacities/scheduler",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.Requests.CapacitySchedulerCreateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Core.Entities.CapacitySchedulerModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 201
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.FabricCapacityController",
+    "Method": "GetAllScheduler",
+    "RelativePath": "api/v1/capacities/scheduler/{capacityName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "capacityName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[BIEmbedSystem.Core.Entities.CapacitySchedulerModel, BIEmbedSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.FabricCapacityController",
+    "Method": "GetSchedulerById",
+    "RelativePath": "api/v1/capacities/scheduler/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Core.Entities.CapacitySchedulerModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.FabricCapacityController",
+    "Method": "UpdateScheduler",
+    "RelativePath": "api/v1/capacities/scheduler/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.Requests.CapacitySchedulerUpdateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Core.Entities.CapacitySchedulerModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.FabricCapacityController",
+    "Method": "DeleteScheduler",
+    "RelativePath": "api/v1/capacities/scheduler/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 204
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.FabricCapacityController",
+    "Method": "ListSkus",
+    "RelativePath": "api/v1/capacities/skus",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Azure.ResourceManager.Fabric.Models.FabricSkuDetailsForNewCapacity, Azure.ResourceManager.Fabric, Version=1.0.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.FabricCapacityController",
+    "Method": "ListBySubscription",
+    "RelativePath": "api/v1/capacities/subscriptions/{subscriptionId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "subscriptionId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Azure.ResourceManager.Fabric.FabricCapacityData, Azure.ResourceManager.Fabric, Version=1.0.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.FabricCapacityController",
+    "Method": "CheckNameAvailability",
+    "RelativePath": "api/v1/capacities/subscriptions/{subscriptionId}/location/{location}/checkNameAvailability",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "subscriptionId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "location",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.API.Controllers.FabricCapacityNameAvailabilityRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Azure.ResourceManager.Fabric.Models.FabricNameAvailabilityResult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.FabricCapacityController",
+    "Method": "ListByResourceGroup",
+    "RelativePath": "api/v1/capacities/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "subscriptionId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "resourceGroupName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Azure.ResourceManager.Fabric.FabricCapacityData, Azure.ResourceManager.Fabric, Version=1.0.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.FabricCapacityController",
+    "Method": "GetCapacity",
+    "RelativePath": "api/v1/capacities/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/capacities/{capacityName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "subscriptionId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "resourceGroupName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "capacityName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Azure.ResourceManager.Fabric.FabricCapacityData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.FabricCapacityController",
+    "Method": "CreateOrUpdateCapacity",
+    "RelativePath": "api/v1/capacities/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/capacities/{capacityName}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "subscriptionId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "resourceGroupName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "capacityName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "data",
+        "Type": "BIEmbedSystem.Services.DTO.FabricCapacityCreationData",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Azure.ResourceManager.Fabric.FabricCapacityData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.FabricCapacityController",
+    "Method": "UpdateCapacity",
+    "RelativePath": "api/v1/capacities/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/capacities/{capacityName}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "subscriptionId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "resourceGroupName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "capacityName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "data",
+        "Type": "BIEmbedSystem.Services.DTO.FabricCapacityPatchData",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Azure.ResourceManager.Fabric.FabricCapacityData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.FabricCapacityController",
+    "Method": "DeleteCapacity",
+    "RelativePath": "api/v1/capacities/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/capacities/{capacityName}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "subscriptionId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "resourceGroupName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "capacityName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 202
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.FabricCapacityController",
+    "Method": "ListSkusForCapacity",
+    "RelativePath": "api/v1/capacities/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/capacities/{capacityName}/listSkus",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "subscriptionId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "resourceGroupName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "capacityName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Azure.ResourceManager.Fabric.Models.FabricSkuDetailsForExistingCapacity, Azure.ResourceManager.Fabric, Version=1.0.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.FabricCapacityController",
+    "Method": "ResumeCapacity",
+    "RelativePath": "api/v1/capacities/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/capacities/{capacityName}/resume",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "subscriptionId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "resourceGroupName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "capacityName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 202
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.FabricCapacityController",
+    "Method": "SuspendCapacity",
+    "RelativePath": "api/v1/capacities/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/capacities/{capacityName}/suspend",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "subscriptionId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "resourceGroupName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "capacityName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 202
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.HomeController",
+    "Method": "GetHeaderInfo",
+    "RelativePath": "api/v1/Home/GetHeaderInfo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.HomeController",
+    "Method": "geRolesListAsync",
+    "RelativePath": "api/v1/Home/getRolesList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.HomeController",
+    "Method": "geRolesListInHouseAsync",
+    "RelativePath": "api/v1/Home/getRolesListInHouse/{organisationId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "organisationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.HomeController",
+    "Method": "getUserListAsync",
+    "RelativePath": "api/v1/Home/getUserList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.OneLakeController",
+    "Method": "Get",
+    "RelativePath": "api/v1/OneLake",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [],
+    "EndpointName": "GetOneLake"
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.OneLakeController",
+    "Method": "GetLakehouseItems",
+    "RelativePath": "api/v1/OneLake/lakehouse-items",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "workspaceName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "lakehouseName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.OneLakeController",
+    "Method": "ReadFile",
+    "RelativePath": "api/v1/OneLake/read-file",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "workspaceName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "lakehouseName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "filePath",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.OneLakeController",
+    "Method": "UploadFile",
+    "RelativePath": "api/v1/OneLake/upload-file",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "workspaceName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "lakehouseName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "filePath",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "content",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.OneLakeController",
+    "Method": "GetWorkspaces",
+    "RelativePath": "api/v1/OneLake/workspaces",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.OrganizationController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/organizations",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[BIEmbedSystem.Services.DTO.OrganizationDto, BIEmbedSystem.Services, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.OrganizationController",
+    "Method": "Create",
+    "RelativePath": "api/v1/organizations",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.OrganizationCreateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.OrganizationDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 201
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.OrganizationController",
+    "Method": "GetById",
+    "RelativePath": "api/v1/organizations/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.OrganizationDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.OrganizationController",
+    "Method": "Update",
+    "RelativePath": "api/v1/organizations/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.OrganizationUpdateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.OrganizationDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.OrganizationController",
+    "Method": "Delete",
+    "RelativePath": "api/v1/organizations/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.OrganizationController",
+    "Method": "UploadLogo",
+    "RelativePath": "api/v1/organizations/{id}/upload-logo",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "File",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.OrganizationSubscriptionController",
+    "Method": "Create",
+    "RelativePath": "api/v1/OrganizationSubscription",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.CreateOrganizationSubscriptionRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.OrganizationSubscriptionController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/OrganizationSubscription",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.OrganizationSubscriptionController",
+    "Method": "Update",
+    "RelativePath": "api/v1/OrganizationSubscription/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.UpdateOrganizationSubscriptionRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.OrganizationSubscriptionController",
+    "Method": "GetById",
+    "RelativePath": "api/v1/OrganizationSubscription/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.OrganizationSubscriptionController",
+    "Method": "Delete",
+    "RelativePath": "api/v1/OrganizationSubscription/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.OrganizationSubscriptionController",
+    "Method": "GetByOrg",
+    "RelativePath": "api/v1/OrganizationSubscription/org/{organizationId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "organizationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PBIManagementController",
+    "Method": "BulkUpdateNavigationUserAccess",
+    "RelativePath": "api/v1/PBIManagement/bulk",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.BulkNavigationUserAccessUpdateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PBIManagementController",
+    "Method": "DeletePBINavigationManagementById",
+    "RelativePath": "api/v1/PBIManagement/delete-navigationManagementById",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PBIManagementController",
+    "Method": "GetGroupWorkspaceReport",
+    "RelativePath": "api/v1/PBIManagement/get-groupWorkspaceReport",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PBIManagementController",
+    "Method": "GetMenubarByGroup",
+    "RelativePath": "api/v1/PBIManagement/get-menubarByGroup",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PBIManagementController",
+    "Method": "GetPBINavigationManagement",
+    "RelativePath": "api/v1/PBIManagement/get-navigationManagement",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PBIManagementController",
+    "Method": "GetPBINavigationManagementById",
+    "RelativePath": "api/v1/PBIManagement/get-navigationManagementById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PBIManagementController",
+    "Method": "GetPBINavigationUserAccess",
+    "RelativePath": "api/v1/PBIManagement/get-navigationUserAccess",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PBIManagementController",
+    "Method": "GetPBINavigationUserAccessByEmail",
+    "RelativePath": "api/v1/PBIManagement/get-navigationUserAccessByEmail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userEmail",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PBIManagementController",
+    "Method": "GetPBINavigationUserAccessByOrg",
+    "RelativePath": "api/v1/PBIManagement/get-navigationUserAccessByOrg/{orgId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orgId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PBIManagementController",
+    "Method": "GetRefreshablesAsync",
+    "RelativePath": "api/v1/PBIManagement/get-refreshable",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "top",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "expand",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "filter",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "skip",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Core.Entities.Refreshables",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PBIManagementController",
+    "Method": "GetRefreshablesForCapacityAsync",
+    "RelativePath": "api/v1/PBIManagement/get-refreshable-for-capacity",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "capacityId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "refreshableId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Core.Entities.Refreshables",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PBIManagementController",
+    "Method": "GetUserMenuByGroup",
+    "RelativePath": "api/v1/PBIManagement/get-userMenuByGroup",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "groupName",
+        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PBIManagementController",
+    "Method": "GetWorkspaceReport",
+    "RelativePath": "api/v1/PBIManagement/get-workspaceReport",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PBIManagementController",
+    "Method": "GetAccessToken",
+    "RelativePath": "api/v1/PBIManagement/getAccessToken",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PBIManagementController",
+    "Method": "SaveGroupWorkspaceReports",
+    "RelativePath": "api/v1/PBIManagement/save-groupWorkspaceReport",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "groupWorkspaceReports",
+        "Type": "BIEmbedSystem.Core.Entities.PBIGroupWorkspaceReport",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PBIManagementController",
+    "Method": "SaveMenubarByGroup",
+    "RelativePath": "api/v1/PBIManagement/save-menubarByGroup",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "menubarByGroup",
+        "Type": "BIEmbedSystem.Core.Entities.PBIMenubarByGroup",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PBIManagementController",
+    "Method": "SavePBINavigationManagement",
+    "RelativePath": "api/v1/PBIManagement/save-navigationManagement",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "navigationManagement",
+        "Type": "BIEmbedSystem.Core.Entities.PBINavigationManagement",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PBIManagementController",
+    "Method": "SavePBINavigationUserAccess",
+    "RelativePath": "api/v1/PBIManagement/save-navigationUserAccess",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "navigationUserAccess",
+        "Type": "BIEmbedSystem.Core.Entities.PBINavigationUserAccess",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PBIManagementController",
+    "Method": "SaveWorkspaceReport",
+    "RelativePath": "api/v1/PBIManagement/save-workspaceReport",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "workspaceReport",
+        "Type": "BIEmbedSystem.Core.Entities.PBIWorkspaceReport",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PlanFeatureController",
+    "Method": "Create",
+    "RelativePath": "api/v1/PlanFeature",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.CreatePlanFeatureRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PlanFeatureController",
+    "Method": "Update",
+    "RelativePath": "api/v1/PlanFeature/{planFeatureId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "planFeatureId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.UpdatePlanFeatureRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PlanFeatureController",
+    "Method": "Delete",
+    "RelativePath": "api/v1/PlanFeature/{planFeatureId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "planFeatureId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PlanFeatureController",
+    "Method": "GetByPlan",
+    "RelativePath": "api/v1/PlanFeature/{planId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "planId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PlanFeatureController",
+    "Method": "GetPlanFeatures",
+    "RelativePath": "api/v1/PlanFeature/{planId}/detail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "planId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.PlanFeaturesResponseDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PlanFeatureController",
+    "Method": "GetFullPlanDetails",
+    "RelativePath": "api/v1/PlanFeature/{planId}/details",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "planId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.SubscriptionPlanFullDetailsDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PowerBiController",
+    "Method": "GetEmbedToken",
+    "RelativePath": "api/v1/PowerBi/embed",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "BIEmbedSystem.Services.DTO.EmbedRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
+    "Method": "DeleteBookmark",
+    "RelativePath": "api/v1/Report/bookmark/{id}/{userId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int64",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
+    "Method": "GetBookmarks",
+    "RelativePath": "api/v1/Report/bookmark/{userId}/{reportId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "reportId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
+    "Method": "CreateBookmark",
+    "RelativePath": "api/v1/Report/bookmark/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "BIEmbedSystem.Services.DTO.BookmarkRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
+    "Method": "UpdateBookmark",
+    "RelativePath": "api/v1/Report/bookmark/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "BIEmbedSystem.Services.DTO.UpdateBookmarkDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
+    "Method": "GetEmbedInfoAsync",
+    "RelativePath": "api/v1/Report/embedinfo/{ReportId}/{workspaceId}/{userEmail}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ReportId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "workspaceId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "userEmail",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
+    "Method": "GetEmbedInfoPostAsync",
+    "RelativePath": "api/v1/Report/embedinfo/{ReportId}/{workspaceId}/{userEmail}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ReportId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "workspaceId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "userEmail",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.EmbedRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
+    "Method": "ExportReportFileAsync",
+    "RelativePath": "api/v1/Report/embedinfo/exportfile",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ReportId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "workspaceId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "request",
+        "Type": "Microsoft.PowerBI.Api.Models.ExportReportRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
+    "Method": "GetDatasetHistoryAsync",
+    "RelativePath": "api/v1/Report/getDatasetHistory",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "datasetId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
+    "Method": "GetDatasetRefreshAsync",
+    "RelativePath": "api/v1/Report/getDatasetRefresh",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "datasetId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
+    "Method": "GetReportListAsync",
+    "RelativePath": "api/v1/Report/getReportList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
+    "Method": "GetReportListByWorkspaceAsync",
+    "RelativePath": "api/v1/Report/getReportListByWorkspace",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "workspaceId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
+    "Method": "GetReportsPagesListAsync",
+    "RelativePath": "api/v1/Report/getReportsPagesList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "workspaceId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "reportId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
+    "Method": "GetReportSubscription",
+    "RelativePath": "api/v1/Report/getReportSubscription",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ReportId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
+    "Method": "GetSubscriptionsAsync",
+    "RelativePath": "api/v1/Report/getSubscriptions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
+    "Method": "GetWorkspaceInfo",
+    "RelativePath": "api/v1/Report/getWorkspaceInfo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
+    "Method": "ShareReportV2",
+    "RelativePath": "api/v1/Report/report-share",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "req",
+        "Type": "BIEmbedSystem.Services.DTO.ShareReportRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.RoleController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/roles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[BIEmbedSystem.Services.DTO.RoleDto, BIEmbedSystem.Services, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.RoleController",
+    "Method": "Create",
+    "RelativePath": "api/v1/roles",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.RoleCreateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.RoleDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 201
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.RoleController",
+    "Method": "GetById",
+    "RelativePath": "api/v1/roles/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.RoleDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.RoleController",
+    "Method": "Update",
+    "RelativePath": "api/v1/roles/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.RoleUpdateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.RoleDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.RoleController",
+    "Method": "Delete",
+    "RelativePath": "api/v1/roles/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedBy",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 204
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.RoleController",
+    "Method": "BulkUpdate",
+    "RelativePath": "api/v1/roles/bulk",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.RoleBulkUpdateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.RoleController",
+    "Method": "BulkUpload",
+    "RelativePath": "api/v1/roles/bulk",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "File",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.RoleController",
+    "Method": "GetByOrg",
+    "RelativePath": "api/v1/roles/org/{orgId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orgId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[BIEmbedSystem.Services.DTO.RoleDto, BIEmbedSystem.Services, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.SemanticSchedulerController",
+    "Method": "Delete",
+    "RelativePath": "api/v1/semantic-schedulers/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.SemanticSchedulerController",
+    "Method": "GetById",
+    "RelativePath": "api/v1/semantic-schedulers/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.SemanticSchedulerController",
+    "Method": "Update",
+    "RelativePath": "api/v1/semantic-schedulers/{id}/{userId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "BIEmbedSystem.Services.DTO.SemanticSchedulerUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.SemanticSchedulerController",
+    "Method": "UpdateStatus",
+    "RelativePath": "api/v1/semantic-schedulers/{id}/status/{userId}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "BIEmbedSystem.Services.DTO.SemanticSchedulerStatusDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.SemanticSchedulerController",
+    "Method": "Create",
+    "RelativePath": "api/v1/semantic-schedulers/{userId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "BIEmbedSystem.Services.DTO.SemanticSchedulerCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.SemanticSchedulerController",
+    "Method": "GetByWorkspaceAndDataset",
+    "RelativePath": "api/v1/semantic-schedulers/{workspaceId}/{datasetId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "workspaceId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "datasetId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.SemanticSchedulerController",
+    "Method": "GetByUser",
+    "RelativePath": "api/v1/semantic-schedulers/user/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.SubscriptionPlanController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/subscription-plans",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[BIEmbedSystem.Services.DTO.SubscriptionPlanDto, BIEmbedSystem.Services, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.SubscriptionPlanController",
+    "Method": "Create",
+    "RelativePath": "api/v1/subscription-plans",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.SubscriptionPlanCreateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.SubscriptionPlanDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 201
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.SubscriptionPlanController",
+    "Method": "GetById",
+    "RelativePath": "api/v1/subscription-plans/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.SubscriptionPlanDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.SubscriptionPlanController",
+    "Method": "Update",
+    "RelativePath": "api/v1/subscription-plans/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.SubscriptionPlanUpdateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.SubscriptionPlanDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.SubscriptionPlanController",
+    "Method": "Delete",
+    "RelativePath": "api/v1/subscription-plans/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 204
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.SubscriptionPlanController",
+    "Method": "GetAllActivePlanDetails",
+    "RelativePath": "api/v1/subscription-plans/active/details",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[BIEmbedSystem.Services.DTO.SubscriptionPlanFullDetailsDto, BIEmbedSystem.Services, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.SubscriptionPlanController",
+    "Method": "GetAllPlanDetails",
+    "RelativePath": "api/v1/subscription-plans/all/details",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[BIEmbedSystem.Services.DTO.SubscriptionPlanFullDetailsDto, BIEmbedSystem.Services, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.SubscriptionController",
+    "Method": "CreateSubscription",
+    "RelativePath": "api/v1/subscriptions",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "ReportSubscriptionDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ReportSubscriptionDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 201
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.SubscriptionController",
+    "Method": "GetAllSubscriptions",
+    "RelativePath": "api/v1/subscriptions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[ReportSubscriptionDto, BIEmbedSystem.Services, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.SubscriptionController",
+    "Method": "GetSubscriptionById",
+    "RelativePath": "api/v1/subscriptions/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ReportSubscriptionDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.SubscriptionController",
+    "Method": "UpdateSubscription",
+    "RelativePath": "api/v1/subscriptions/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "ReportSubscriptionDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.SubscriptionController",
+    "Method": "DeleteSubscription",
+    "RelativePath": "api/v1/subscriptions/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 204
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.SubscriptionController",
+    "Method": "SetActiveStatus",
+    "RelativePath": "api/v1/subscriptions/{id}/status",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "active",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.SubscriptionController",
+    "Method": "TriggerSubscription",
+    "RelativePath": "api/v1/subscriptions/{id}/trigger",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.SubscriptionController",
+    "Method": "GetSubscriptionsByWorkspaceAndReport",
+    "RelativePath": "api/v1/subscriptions/{workspaceId}/{reportId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "workspaceId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "reportId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[ReportSubscriptionDto, BIEmbedSystem.Services, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.SubscriptionController",
+    "Method": "GetSubscriptionByUserId",
+    "RelativePath": "api/v1/subscriptions/user/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ReportSubscriptionDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.UserTrackingController",
+    "Method": "Log",
+    "RelativePath": "api/v1/tracking",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.UserTrackingRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.UserTrackingController",
+    "Method": "GetHistory",
+    "RelativePath": "api/v1/tracking/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.UserTrackingController",
+    "Method": "GetAllHistory",
+    "RelativePath": "api/v1/tracking/list/{organizationId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "organizationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.UserTrackingController",
+    "Method": "GetRefreshLog",
+    "RelativePath": "api/v1/tracking/refresh/{workspaceId}/{reportId}/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "workspaceId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "reportId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.TranslationController",
+    "Method": "TranslateSidebar",
+    "RelativePath": "api/v1/translate/sidebar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.TranslateSidebarRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.UserController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[BIEmbedSystem.Services.DTO.UserDto, BIEmbedSystem.Services, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.UserController",
+    "Method": "Create",
+    "RelativePath": "api/v1/users",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.Requests.UserCreateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.UserDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 201
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.UserController",
+    "Method": "GetById",
+    "RelativePath": "api/v1/users/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.UserDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.UserController",
+    "Method": "Update",
+    "RelativePath": "api/v1/users/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.Requests.UserUpdateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.UserDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.UserController",
+    "Method": "Delete",
+    "RelativePath": "api/v1/users/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 204
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.UserController",
+    "Method": "BulkUpload",
+    "RelativePath": "api/v1/users/bulk",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "File",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.BulkRoleUploadResult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 201
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.UserController",
+    "Method": "BulkUpdateUsers",
+    "RelativePath": "api/v1/users/bulk",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.BulkUserUpdateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.UserController",
+    "Method": "ForgotPassword",
+    "RelativePath": "api/v1/users/forgot-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.SendOtpRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.UserDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.UserController",
+    "Method": "GetByEmail",
+    "RelativePath": "api/v1/users/getByEmail",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.GetByEmailRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.UserDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 401
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.UserController",
+    "Method": "Login",
+    "RelativePath": "api/v1/users/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.Requests.LoginRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.UserDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 401
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.UserController",
+    "Method": "GetAllByOrgId",
+    "RelativePath": "api/v1/users/org/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[BIEmbedSystem.Services.DTO.UserDto, BIEmbedSystem.Services, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.UserController",
+    "Method": "ResetPassword",
+    "RelativePath": "api/v1/users/reset-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.ResetPasswordRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.UserDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.UserController",
+    "Method": "VerifyOtp",
+    "RelativePath": "api/v1/users/verify-otp",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.VerifyOtpRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.UserDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.UserSubscriptionController",
+    "Method": "Assign",
+    "RelativePath": "api/v1/UserSubscription",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.CreateUserSubscriptionRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.UserSubscriptionController",
+    "Method": "Unassign",
+    "RelativePath": "api/v1/UserSubscription/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.UserSubscriptionController",
+    "Method": "GetUsers",
+    "RelativePath": "api/v1/UserSubscription/orgsub/{orgSubscriptionId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orgSubscriptionId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.OneLakeController",
+    "Method": "GetLakehouseItems",
+    "RelativePath": "api/v2/OneLake/lakehouse-items",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "workspaceName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "lakehouseName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.OneLakeController",
+    "Method": "ReadFile",
+    "RelativePath": "api/v2/OneLake/read-file",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "workspaceName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "lakehouseName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "filePath",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.OneLakeController",
+    "Method": "UploadFile",
+    "RelativePath": "api/v2/OneLake/upload-file",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "workspaceName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "lakehouseName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "filePath",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "content",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.OneLakeController",
+    "Method": "GetWorkspaces",
+    "RelativePath": "api/v2/OneLake/workspaces",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PBIManagementController",
+    "Method": "BulkUpdateNavigationUserAccess",
+    "RelativePath": "api/v2/PBIManagement/bulk",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.BulkNavigationUserAccessUpdateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PowerBiController",
+    "Method": "GetEmbedToken",
+    "RelativePath": "api/v2/PowerBi/embed",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "BIEmbedSystem.Services.DTO.EmbedRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
+    "Method": "UpdateBookmark",
+    "RelativePath": "api/v2/Report/bookmark/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "BIEmbedSystem.Services.DTO.UpdateBookmarkDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

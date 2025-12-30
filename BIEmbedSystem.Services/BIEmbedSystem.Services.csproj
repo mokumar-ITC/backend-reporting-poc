@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="0d2kx3vw.2ga~" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Identity" Version="1.14.0" />
+    <PackageReference Include="Azure.ResourceManager" Version="1.13.2" />
+    <PackageReference Include="Azure.ResourceManager.Fabric" Version="1.0.0" />
+    <PackageReference Include="Azure.Storage.Files.DataLake" Version="12.22.0" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="CsvHelper" Version="33.1.0" />
+    <PackageReference Include="Dapper" Version="2.1.66" />
+    <PackageReference Include="Google.Apis.Auth" Version="1.73.0" />
+    <PackageReference Include="Google.Apis.Gmail.v1" Version="1.72.0.3966" />
+    <PackageReference Include="MailKit" Version="4.14.1" />
+    <PackageReference Include="Microsoft.AnalysisServices.AdomdClient" Version="19.104.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.3.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Graph" Version="5.92.0" />
+    <PackageReference Include="Microsoft.PowerBI.Api" Version="4.22.0" />
+    <PackageReference Include="MimeKit" Version="4.14.0" />
+    <PackageReference Include="SendGrid" Version="9.29.3" />
+	<FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BIEmbedSystem.Infrastrucure\BIEmbedSystem.Infrastrucure.csproj" />
+  </ItemGroup>
+
+</Project>

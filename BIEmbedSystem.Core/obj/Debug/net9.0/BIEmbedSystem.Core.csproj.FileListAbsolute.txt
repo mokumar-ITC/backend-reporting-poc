@@ -1,0 +1,28 @@
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Core\bin\Debug\net9.0\BIEmbedSystem.Core.deps.json
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Core\bin\Debug\net9.0\BIEmbedSystem.Core.dll
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Core\bin\Debug\net9.0\BIEmbedSystem.Core.pdb
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Core\obj\Debug\net9.0\BIEmbedSystem.Core.csproj.AssemblyReference.cache
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Core\obj\Debug\net9.0\BIEmbedSystem.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Core\obj\Debug\net9.0\BIEmbedSystem.Core.AssemblyInfoInputs.cache
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Core\obj\Debug\net9.0\BIEmbedSystem.Core.AssemblyInfo.cs
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Core\obj\Debug\net9.0\BIEmbedSystem.Core.csproj.CoreCompileInputs.cache
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Core\obj\Debug\net9.0\BIEmbedSystem.Core.dll
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Core\obj\Debug\net9.0\refint\BIEmbedSystem.Core.dll
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Core\obj\Debug\net9.0\BIEmbedSystem.Core.pdb
+C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEmbedSystem\BIEmbedSystem.Core\obj\Debug\net9.0\ref\BIEmbedSystem.Core.dll
+C:\Users\MOKUMAR\Desktop\Publish\BIEmbedSystem.Core.deps.json
+C:\Users\MOKUMAR\Desktop\Publish\BIEmbedSystem.Core.dll
+C:\Users\MOKUMAR\Desktop\Publish\BIEmbedSystem.Core.pdb
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Core\obj\Debug\net9.0\BIEmbedSystem.Core.csproj.AssemblyReference.cache
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Core\obj\Debug\net9.0\BIEmbedSystem.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Core\obj\Debug\net9.0\BIEmbedSystem.Core.AssemblyInfoInputs.cache
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Core\obj\Debug\net9.0\BIEmbedSystem.Core.AssemblyInfo.cs
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Core\obj\Debug\net9.0\BIEmbedSystem.Core.csproj.CoreCompileInputs.cache
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Core\obj\Debug\net9.0\BIEmbedSystem.Core.sourcelink.json
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Core\bin\Debug\net9.0\BIEmbedSystem.Core.deps.json
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Core\bin\Debug\net9.0\BIEmbedSystem.Core.dll
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Core\bin\Debug\net9.0\BIEmbedSystem.Core.pdb
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Core\obj\Debug\net9.0\BIEmbedSystem.Core.dll
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Core\obj\Debug\net9.0\refint\BIEmbedSystem.Core.dll
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Core\obj\Debug\net9.0\BIEmbedSystem.Core.pdb
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Core\obj\Debug\net9.0\ref\BIEmbedSystem.Core.dll

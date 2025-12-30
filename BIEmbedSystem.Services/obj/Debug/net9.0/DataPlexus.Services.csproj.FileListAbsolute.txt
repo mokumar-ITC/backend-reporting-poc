@@ -1,0 +1,17 @@
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Services\obj\Debug\net9.0\DataPlexus.Services.csproj.AssemblyReference.cache
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Services\obj\Debug\net9.0\DataPlexus.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Services\obj\Debug\net9.0\DataPlexus.Services.AssemblyInfoInputs.cache
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Services\obj\Debug\net9.0\DataPlexus.Services.AssemblyInfo.cs
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Services\obj\Debug\net9.0\DataPlexus.Services.csproj.CoreCompileInputs.cache
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Services\bin\Debug\net9.0\DataPlexus.Services.deps.json
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Services\bin\Debug\net9.0\DataPlexus.Services.dll
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Services\bin\Debug\net9.0\DataPlexus.Services.pdb
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Services\bin\Debug\net9.0\DataPlexus.Core.dll
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Services\bin\Debug\net9.0\DataPlexus.Infrastrucure.dll
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Services\bin\Debug\net9.0\DataPlexus.Infrastrucure.pdb
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Services\bin\Debug\net9.0\DataPlexus.Core.pdb
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Services\obj\Debug\net9.0\DataPlex.F84C96A3.Up2Date
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Services\obj\Debug\net9.0\DataPlexus.Services.dll
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Services\obj\Debug\net9.0\refint\DataPlexus.Services.dll
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Services\obj\Debug\net9.0\DataPlexus.Services.pdb
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Services\obj\Debug\net9.0\ref\DataPlexus.Services.dll

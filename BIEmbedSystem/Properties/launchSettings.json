@@ -1,0 +1,28 @@
+﻿{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "http": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": false,
+      "applicationUrl": "http://localhost:7242",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production",
+        "ConnectionStrings__DefaultConnection": "Server=localhost\\MSSQLSERVER02;Database=master;Trusted_Connection=True;"
+      }
+    },
+    "https": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": false,
+      "applicationUrl": "https://localhost:7242;http://localhost:5172",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production",
+        "ConnectionStrings__DefaultConnection": "Server=localhost\\MSSQLSERVER02;Database=master;Trusted_Connection=True;",
+        "SubscriptionID": "054afeda-f1ba-4f7a-81bb-85da2f7a1203",
+        "Resource_Group": "rg-itc-fabric-wus",
+        "Fabric_Capacity_Name": "asfitcpoc01"
+      }
+    }
+  }
+}

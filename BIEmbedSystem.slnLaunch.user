@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "DataPlexus\\BIEmbedSystem.API.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "SilverLayer\\DataPlexus.SilverLayerJob.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

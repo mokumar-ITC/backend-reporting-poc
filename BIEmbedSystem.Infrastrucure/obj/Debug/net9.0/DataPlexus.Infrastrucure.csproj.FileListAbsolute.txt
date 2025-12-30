@@ -1,0 +1,15 @@
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Infrastrucure\obj\Debug\net9.0\DataPlexus.Infrastrucure.csproj.AssemblyReference.cache
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Infrastrucure\obj\Debug\net9.0\DataPlexus.Infrastrucure.GeneratedMSBuildEditorConfig.editorconfig
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Infrastrucure\obj\Debug\net9.0\DataPlexus.Infrastrucure.AssemblyInfoInputs.cache
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Infrastrucure\obj\Debug\net9.0\DataPlexus.Infrastrucure.AssemblyInfo.cs
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Infrastrucure\obj\Debug\net9.0\DataPlexus.Infrastrucure.csproj.CoreCompileInputs.cache
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Infrastrucure\bin\Debug\net9.0\DataPlexus.Infrastrucure.deps.json
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Infrastrucure\bin\Debug\net9.0\DataPlexus.Infrastrucure.dll
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Infrastrucure\bin\Debug\net9.0\DataPlexus.Infrastrucure.pdb
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Infrastrucure\bin\Debug\net9.0\DataPlexus.Core.dll
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Infrastrucure\bin\Debug\net9.0\DataPlexus.Core.pdb
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Infrastrucure\obj\Debug\net9.0\DataPlex.56B34D81.Up2Date
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Infrastrucure\obj\Debug\net9.0\DataPlexus.Infrastrucure.dll
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Infrastrucure\obj\Debug\net9.0\refint\DataPlexus.Infrastrucure.dll
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Infrastrucure\obj\Debug\net9.0\DataPlexus.Infrastrucure.pdb
+C:\InHouseProject-DATA_PLEXUS\Project\GITLab\dataplexus\DataPlexus.Infrastrucure\obj\Debug\net9.0\ref\DataPlexus.Infrastrucure.dll
