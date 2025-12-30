@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BIEmbedSystem.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+01c683f115e316104a0f3d7630aeb2f31af3d1cd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1a5360d1433412ba72df846bbfbcfa72cdb75c59")]
 [assembly: System.Reflection.AssemblyProductAttribute("BIEmbedSystem.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BIEmbedSystem.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
