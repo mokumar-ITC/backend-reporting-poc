@@ -141,10 +141,14 @@ namespace BIEmbedSystem.Services
             // 🔒 Apply role filter ONLY if not admin
             if (!isAdmin)
             {
-                query = query.Where(u => u.RoleId.HasValue && roleIds.Contains(u.RoleId.Value));
+                query = query.Where(u => u.RoleId.HasValue && roleIds.Contains(u.RoleId.Value) && u.Id != 43);
+            }
+            else
+            {
+                query = query.Where(u => u.Id != 43);
             }
 
-            return await query.ToListAsync();
+                return await query.ToListAsync();
         }
 
         public async Task<string> SavePBINavigationManagement(PBINavigationManagement navigationManagement,string userEmail)

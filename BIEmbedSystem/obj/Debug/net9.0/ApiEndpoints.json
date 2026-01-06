@@ -1726,6 +1726,37 @@
   },
   {
     "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
+    "Method": "GetEmbedInfoAsync",
+    "RelativePath": "api/v1/Report/embedinfov2/{ReportId}/{workspaceId}/{datasetId}/{userEmail}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ReportId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "workspaceId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "datasetId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "userEmail",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
     "Method": "GetDatasetHistoryAsync",
     "RelativePath": "api/v1/Report/getDatasetHistory",
     "HttpMethod": "GET",

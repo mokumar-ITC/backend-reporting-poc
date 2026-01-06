@@ -345,6 +345,12 @@ namespace BIEmbedSystem.Services
                 Type = "Report",
                 EmbedToken = embedToken,
                 DatasetId = pbiReport.DatasetId,
+                ReportName = pbiReport.Name,
+                ReportDiscription =pbiReport.Description,
+
+                // NEW flags (add these properties to your EmbedParams DTO if not already present)
+                IsRlsEnabled = false,
+                IsUserAllowed = false
             };
 
             return embedParams;
@@ -657,6 +663,41 @@ namespace BIEmbedSystem.Services
             var embedToken = await pbiClient.EmbedToken.GenerateTokenAsync(tokenRequest);
 
             return embedToken;
+        }
+
+
+        public async Task<EmbedToken> GenerateEmbedTokenWithRlsAsync(
+        Guid workspaceId,
+        Guid reportId,
+        Guid datasetId,
+        string userEmail
+)
+        {
+            var pbiClient = await GetPowerBIClient();
+
+            var identity = new EffectiveIdentity(
+                username: userEmail,                     // MUST match RLS DAX
+                roles: new List<string> { "RLS_User" },  // EXACT role name
+                datasets: new List<string> { datasetId.ToString() }
+            );
+
+            var tokenRequest = new GenerateTokenRequestV2(
+                reports: new List<GenerateTokenRequestV2Report>
+                {
+            new GenerateTokenRequestV2Report(reportId)
+                },
+                datasets: new List<GenerateTokenRequestV2Dataset>
+                {
+            new GenerateTokenRequestV2Dataset(datasetId.ToString())
+                },
+                targetWorkspaces: new List<GenerateTokenRequestV2TargetWorkspace>
+                {
+            new GenerateTokenRequestV2TargetWorkspace(workspaceId)
+                },
+                identities: new List<EffectiveIdentity> { identity }
+            );
+
+            return await pbiClient.EmbedToken.GenerateTokenAsync(tokenRequest);
         }
 
         public async Task<bool> DatasetHasRLSAsync(Guid workspaceId, Guid datasetId, string accessToken)

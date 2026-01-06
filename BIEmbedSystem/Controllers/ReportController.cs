@@ -56,8 +56,9 @@ namespace BIEmbedSystem.API.Controllers
                 _azureAd.Value.ScopeBase?.Length);
 
                 var token = Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
-                EmbedParams embedParams = await _reportPbiEmbedService.GetEmbedParams(new Guid(workspaceId), new Guid(ReportId), token, userEmail);
+                EmbedParams embedParams = userEmail == "fabricreport"? await _reportPbiEmbedService.GetEmbedParamsV2(new Guid(workspaceId), new Guid(ReportId), userEmail, token) : await _reportPbiEmbedService.GetEmbedParams(new Guid(workspaceId), new Guid(ReportId), token, userEmail);
                 //EmbedParams embedParams = await _reportPbiEmbedService.GetEmbedParamsV2(new Guid(workspaceId), new Guid(ReportId), userEmail, token);
+                //EmbedParams embedParams = await _reportPbiEmbedService.GenerateEmbedTokenWithRlsAsync(new Guid(workspaceId), new Guid(ReportId), new Guid(Dataset), userEmail);
 
                 return JsonSerializer.Serialize<EmbedParams>(embedParams);
             }
@@ -71,6 +72,35 @@ namespace BIEmbedSystem.API.Controllers
             {
                 HttpContext.Response.StatusCode = 500;
                 return ex.Message + "\n\n" + ex.StackTrace;
+            }
+        }
+
+        [HttpGet("embedinfov2/{ReportId}/{workspaceId}/{datasetId}/{userEmail}")]
+        [MapToApiVersion("1.0")]
+        public async Task<IActionResult> GetEmbedInfoAsync(string ReportId, string workspaceId, string datasetId, string userEmail)
+        {
+            try
+            {
+                _logger.LogError("AzureAd Loaded → Tenant={tenant}, Client={client}, ScopeBaseLength={len}",
+                    _azureAd.Value.TenantId,
+                    _azureAd.Value.ClientId,
+                    _azureAd.Value.ScopeBase?.Length);
+
+                var token = Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+                var embedParams = await _reportPbiEmbedService.GenerateEmbedTokenWithRlsAsync(new Guid(workspaceId), new Guid(ReportId), new Guid(datasetId), userEmail);
+
+                return Ok(embedParams);
+            }
+            catch (HttpOperationException exc)
+            {
+                HttpContext.Response.StatusCode = (int)exc.Response.StatusCode;
+                var message = string.Format("Status: {0} ({1})\r\nResponse: {2}\r\nRequestId: {3}", exc.Response.StatusCode, (int)exc.Response.StatusCode, exc.Response.Content, exc.Response.Headers["RequestId"].FirstOrDefault());
+                return Content(message);
+            }
+            catch (Exception ex)
+            {
+                HttpContext.Response.StatusCode = 500;
+                return Content(ex.Message + "\n\n" + ex.StackTrace);
             }
         }
 
