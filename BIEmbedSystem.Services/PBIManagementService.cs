@@ -113,7 +113,10 @@ namespace BIEmbedSystem.Services
 
         public async Task<List<PBINavigationManagement>> GetPBINavigationManagement()
         {
-            return await _db.NavigationManagements.Where(u => u.IsActive == true).ToListAsync();
+            return await _db.NavigationManagements
+            .Where(u => u.IsActive == true && u.Id != 43)
+            .OrderBy(u => u.Order)   // 👈 sort DESC
+            .ToListAsync();
         }
         public async Task<PBINavigationManagement> GetPBINavigationManagementById( int id)
         {
@@ -147,8 +150,10 @@ namespace BIEmbedSystem.Services
             {
                 query = query.Where(u => u.Id != 43);
             }
+            // ✅ APPLY ORDERING FOR BOTH CASES
+            query = query.OrderBy(u => u.Order);
 
-                return await query.ToListAsync();
+            return await query.ToListAsync();
         }
 
         public async Task<string> SavePBINavigationManagement(PBINavigationManagement navigationManagement,string userEmail)
@@ -158,9 +163,15 @@ namespace BIEmbedSystem.Services
                 _logger.LogError("Save Navigation Management called with null or empty collection.");
                 return "Navigation Management cannot be null or empty.";
             }
-            var existRules = await _db.NavigationManagements.Where(u => u.Name == navigationManagement.Name 
+            var existRules = await _db.NavigationManagements.Where(u => u.Id == navigationManagement.Id 
             && u.ParentItem== navigationManagement.ParentItem
             && u.IsActive == true).FirstOrDefaultAsync();
+            //check name is already Exist or not
+            //var checkName = await _db.NavigationManagements.Where(u => u.Name == navigationManagement.Name).FirstOrDefaultAsync();
+            //if (checkName != null)
+            //{
+            //    return "Name Already exist";
+            //}
             if (existRules == null)
             {
                 navigationManagement.CreatedDate = DateTime.UtcNow;
@@ -214,6 +225,30 @@ namespace BIEmbedSystem.Services
             }
 
                 
+        }
+
+        public async Task<bool> SaveNavigationOrderAsync(
+        List<NavigationOrderDto> navigationOrders,
+        string userEmail)
+        {
+            var ids = navigationOrders.Select(x => x.Id).ToList();
+
+            var items = await _db.NavigationManagements
+                .Where(n => ids.Contains(n.Id))
+                .ToListAsync();
+
+            foreach (var item in items)
+            {
+                var updatedOrder = navigationOrders
+                    .First(x => x.Id == item.Id);
+
+                item.Order = updatedOrder.Order;
+                item.UpdatedBy = userEmail;
+                item.UpdatedDate = DateTime.UtcNow;
+            }
+
+            await _db.SaveChangesAsync();
+            return true;
         }
 
         public async Task<List<PBINavigationUserAccess>> GetPBINavigationUserAccess()

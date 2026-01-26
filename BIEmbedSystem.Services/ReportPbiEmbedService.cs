@@ -6,8 +6,12 @@ using BIEmbedSystem.Infrastrucure;
 using BIEmbedSystem.Services.DTO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Microsoft.Graph.Models;
+using Microsoft.Graph.Models.TermStore;
 using Microsoft.Identity.Client;
 using Microsoft.Identity.Client.NativeInterop;
+using Microsoft.Identity.Client.Platforms.Features.DesktopOs.Kerberos;
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using Microsoft.PowerBI.Api;
 using Microsoft.PowerBI.Api.Models;
 using Microsoft.Rest;
@@ -20,6 +24,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using Group = Microsoft.PowerBI.Api.Models.Group;
+
 
 
 namespace BIEmbedSystem.Services
@@ -69,7 +74,7 @@ namespace BIEmbedSystem.Services
         /// </summary>
         /// <param name="workspaceId"></param>
         /// <returns></returns>
-        public async Task<List<Report>> GetReportList(Guid workspaceId)
+        public async Task<List<Microsoft.PowerBI.Api.Models.Report>> GetReportList(Guid workspaceId)
         {
             // List<Report> list = new List<Report>();
             PowerBIClient pbiClient = await this.GetPowerBIClient();
@@ -110,6 +115,30 @@ namespace BIEmbedSystem.Services
             return result;
 
         }
+        public async Task<List<Group>> GetWorkspaceInfoByOrg(int organisationId)
+        {
+            // 1️⃣ Get organization
+            var organization = await _db.Organizations
+                .FirstOrDefaultAsync(o => o.OrganizationId == organisationId);
+
+            if (organization == null || string.IsNullOrEmpty(organization.WorkspaceId))
+                return new List<Group>();
+
+            // 2️⃣ Get Power BI client
+            PowerBIClient pbiClient = await GetPowerBIClient();
+
+            // 3️⃣ Get all workspaces
+            var groupsResponse = await pbiClient.Groups.GetGroupsAsync();
+            var groups = groupsResponse.Value;
+
+            // 4️⃣ Filter only the organization workspace
+            var orgWorkspaces = groups
+                .Where(g =>
+                    g.Id.ToString().Equals(organization.WorkspaceId, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            return orgWorkspaces;
+        }
 
         public async Task<List<string>> GetSubscriptions()
         {
@@ -147,8 +176,9 @@ namespace BIEmbedSystem.Services
         public async Task<EmbedParams> GetEmbedParams(
         Guid workspaceId,
         Guid reportId,
-        [Optional] string token,
         string userEmail,
+        string type,
+        [Optional] string token,
         [Optional] Guid additionalDatasetId)
         {
             PowerBIClient pbiClient = await this.GetPowerBIClient();
@@ -165,102 +195,56 @@ namespace BIEmbedSystem.Services
             bool effectiveIdentityApplied = false;      // whether the embed token actually contains an effective identity
 
             // If paginated, use the RDL path (your helper)
-            if (string.Equals(pbiReport.ReportType, "PaginatedReport", StringComparison.OrdinalIgnoreCase))
+            if (reportData.Type == "PaginatedReport")
             {
                 embedToken = await GetEmbedTokenForRDLReportV2_OnlyReportWorkspaceAsync(pbiClient, workspaceId, reportId);
                 // Paginated reports typically do not accept effective identities the same way - mark accordingly
                 isRlsEnabled = false;
                 effectiveIdentityApplied = false;
             }
-            else
+            else if(reportData.Type == "Report")
             {
-                // Build dataset list (string IDs)
                 var datasetIds = new List<string>();
                 if (!string.IsNullOrEmpty(pbiReport.DatasetId))
                     datasetIds.Add(pbiReport.DatasetId);
                 if (additionalDatasetId != Guid.Empty)
                     datasetIds.Add(additionalDatasetId.ToString());
-
-                // Use the real user's UPN here (use userEmail)
-                var effectiveUsername = userEmail ?? "mokumar@itconvergence.com";
-
-                // If your model uses specific role names, put them here; otherwise leave empty list
-                var rolesForUser = new List<string>(); // e.g. new List<string>{ "SalesRole" }
-
-                // Decide whether you want to attempt RLS - here we attempt if there is a dataset id
-                isRlsEnabled = datasetIds.Any();
-
-                // Build EffectiveIdentity(s). Include dataset ids that RLS applies to.
-                var identities = new List<EffectiveIdentity>
-                {
-                    new EffectiveIdentity(
-                        username: effectiveUsername,
-                        roles: rolesForUser,
-                        datasets: datasetIds
-                    )
-                };
-
                 // Build GenerateTokenRequestV2 with identities
                 var datasetsForV2 = datasetIds.Select(d => new GenerateTokenRequestV2Dataset(d)).ToList();
                 var reportsForV2 = new List<GenerateTokenRequestV2Report> { new GenerateTokenRequestV2Report(reportId, allowEdit: false) };
-
-                // If your datasets are in other workspaces, add them here (targetWorkspaces)
-                List<GenerateTokenRequestV2TargetWorkspace>? targetWorkspaces = null;
-                // Example: if dataset is in same workspace as report, include report workspace
-                targetWorkspaces = new List<GenerateTokenRequestV2TargetWorkspace> { new GenerateTokenRequestV2TargetWorkspace(workspaceId) };
-
-                // Create the V2 request including identities
-                var tokenRequestWithIdentity = new GenerateTokenRequestV2(
-                    reports: reportsForV2,
-                    datasets: datasetsForV2,
-                    identities: identities,
-                    targetWorkspaces: targetWorkspaces
+                // fallback: attempt token without identities (will likely be rejected if RLS required)
+                var tokenRequestFallback = new GenerateTokenRequestV2(reports: reportsForV2, datasets: datasetsForV2);
+                embedToken = await pbiClient.EmbedToken.GenerateTokenAsync(tokenRequestFallback);
+                effectiveIdentityApplied = false;
+            }
+            else
+            {
+                var identity = new EffectiveIdentity(
+                    username: userEmail,                     // MUST match RLS DAX
+                    roles: new List<string> { "Role" },  // EXACT role name
+                    datasets: new List<string> { reportData.DatasetId.ToString() }
                 );
 
-
-
-                try
-                {
-                    // This must succeed if identity and permissions are correct
-                    embedToken = await pbiClient.EmbedToken.GenerateTokenAsync(tokenRequestWithIdentity);
-                    effectiveIdentityApplied = true;
-                }
-                catch (Microsoft.Rest.HttpOperationException httpEx)
-                {
-                    // Log for debugging
-                    var resp = httpEx.Response?.Content;
-                    Console.WriteLine("Embed token creation failed: " + resp);
-
-                    // If the error indicates this dataset does not support effective identity, fallback if desired
-                    if (resp != null && resp.IndexOf("effective identity is not supported", StringComparison.OrdinalIgnoreCase) >= 0)
+                var tokenRequest = new GenerateTokenRequestV2(
+                    reports: new List<GenerateTokenRequestV2Report>
                     {
-                        // fallback: attempt token without identities (will likely be rejected if RLS required)
-                        var tokenRequestFallback = new GenerateTokenRequestV2(reports: reportsForV2, datasets: datasetsForV2);
-                        embedToken = await pbiClient.EmbedToken.GenerateTokenAsync(tokenRequestFallback);
-                        effectiveIdentityApplied = false;
-                    }
-                    else
+                        new GenerateTokenRequestV2Report(reportId)
+                    },
+                        datasets: new List<GenerateTokenRequestV2Dataset>
                     {
-                        // Re-throw so caller gets full error
-                        throw;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    // Generic fallback: try a simple embed token (or rethrow depending on your policy)
-                    Console.WriteLine($"Unexpected error generating token with EffectiveIdentity: {ex.Message}");
+                        new GenerateTokenRequestV2Dataset(reportData.DatasetId.ToString())
+                    },
+                    targetWorkspaces: new List<GenerateTokenRequestV2TargetWorkspace>
+                    {
+                        new GenerateTokenRequestV2TargetWorkspace(workspaceId)
+                    },
+                    identities: new List<EffectiveIdentity> { identity }
+                );
 
-                    // Try simple token w/o identities
-                    var tokenRequestFallback = new GenerateTokenRequestV2
-                    (
-                        reports: new List<GenerateTokenRequestV2Report> { new GenerateTokenRequestV2Report(reportId) },
-                        datasets: datasetIds.Select(d => new GenerateTokenRequestV2Dataset(d)).ToList(),
-                        identities: null
-                    );
-
-                    embedToken = await pbiClient.EmbedToken.GenerateTokenAsync(tokenRequestFallback);
-                    effectiveIdentityApplied = false;
-                }
+                embedToken =  await pbiClient.EmbedToken.GenerateTokenAsync(tokenRequest);
+                // Paginated reports typically do not accept effective identities the same way - mark accordingly
+                isRlsEnabled = true;
+                effectiveIdentityApplied = true;
             }
 
             // Build embed report list
@@ -292,7 +276,7 @@ namespace BIEmbedSystem.Services
             return embedParams;
         }
 
-        public async Task<EmbedParams> GetEmbedParamsV2(Guid workspaceId, Guid reportId, [Optional] string token, string userEmail, [Optional] Guid additionalDatasetId)
+        public async Task<EmbedParams> GetEmbedParamsV2(Guid workspaceId, Guid reportId, string userEmail, string type, [Optional] string token, [Optional] Guid additionalDatasetId)
         {
             PowerBIClient pbiClient = await this.GetPowerBIClient();
 
@@ -306,7 +290,7 @@ namespace BIEmbedSystem.Services
             EmbedToken embedToken;
 
             // Generate embed token for RDL report if dataset is not present
-            if (isRDLReport)
+            if (type == "PaginatedReport" )
             {
                 // Get Embed token for RDL Report
                 embedToken = await GetEmbedTokenForRDLReport(workspaceId, reportId);
@@ -527,7 +511,7 @@ namespace BIEmbedSystem.Services
             string[] userScopes = new[] { "https://analysis.windows.net/powerbi/api/.default" };
 
             var oboResult = await oboApp.AcquireTokenOnBehalfOf(userScopes,
-                new UserAssertion(userGraphToken)).ExecuteAsync();
+                new Microsoft.Identity.Client.UserAssertion(userGraphToken)).ExecuteAsync();
 
             string userPbiToken = oboResult.AccessToken;
             IdentityBlob identityBlob = new IdentityBlob(
@@ -535,11 +519,11 @@ namespace BIEmbedSystem.Services
                                     );
 
             var rlsIdentity = new EffectiveIdentity(  // If dynamic RLS
-               username: userEmail,
-               roles: new List<string> { "role" },
-              //customData: "Email",
-              datasets: datasetIds.Select(id => id.ToString()).ToList(),
-             identityBlob: identityBlob
+                username: userEmail,
+                roles: new List<string> { "role" },
+                //customData: "Email",
+                datasets: datasetIds.Select(id => id.ToString()).ToList(),
+                identityBlob: identityBlob
              );
 
 
@@ -677,7 +661,7 @@ namespace BIEmbedSystem.Services
 
             var identity = new EffectiveIdentity(
                 username: userEmail,                     // MUST match RLS DAX
-                roles: new List<string> { "RLS_User" },  // EXACT role name
+                roles: new List<string> { "Role" },  // EXACT role name
                 datasets: new List<string> { datasetId.ToString() }
             );
 
@@ -869,167 +853,7 @@ namespace BIEmbedSystem.Services
             return embedToken;
         }
 
-        public async Task<EmbedToken> GetEmbedTokenForRDLReportV2Async(PowerBIClient pbiClient, Guid reportWorkspaceId, Guid reportId, string accessLevel = "View")
-        {
-            // 1) metadata
-            var report = await pbiClient.Reports.GetReportInGroupAsync(reportWorkspaceId, reportId);
-            Console.WriteLine($"ReportType: {report.ReportType}");
-            Console.WriteLine($"Report.DatasetId (may be empty for RDL): {report.DatasetId ?? "<null>"}");
-
-            // 2) get datasources from the paginated report
-            var datasourcesResp = await pbiClient.Reports.GetDatasourcesInGroupAsync(reportWorkspaceId, reportId);
-            //check here 
-            Console.WriteLine("Raw datasourcesResponse JSON:\n" + JsonConvert.SerializeObject(datasourcesResp, Formatting.Indented));
-            var datasourceList = datasourcesResp.Value ?? new List<Datasource>();
-
-            // parse guid from connectionDetails.database value
-            string databaseValue = "sobe_wowvirtualserver-3b9673e4-8c8e-4305-ade0-9c3216a70a2c"; // replace with the actual value from JSON
-            var guidRegex = new System.Text.RegularExpressions.Regex(@"[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}");
-            var match = guidRegex.Match(databaseValue);
-            if (match.Success) Console.WriteLine("Parsed dataset GUID from database string: " + match.Value);
-
-
-            //var guidRegex = new Regex(@"[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}", RegexOptions.Compiled);
-            var datasetGuids = new HashSet<Guid>(); 
-
-            // extract GUIDs from connection details and other datasource props
-            foreach (var ds in datasourceList)
-            {
-                try
-                {
-                    var connProp = ds.GetType().GetProperty("ConnectionDetails");
-                    if (connProp != null)
-                    {
-                        var connVal = connProp.GetValue(ds);
-                        if (connVal != null)
-                        {
-                            var cs = JsonConvert.SerializeObject(connVal);
-                            foreach (Match m in guidRegex.Matches(cs))
-                                if (Guid.TryParse(m.Value, out var g) && g != Guid.Empty) datasetGuids.Add(g);
-                        }
-                    }
-
-                    var dsIdProp = ds.GetType().GetProperty("DatasourceId") ?? ds.GetType().GetProperty("DataSourceId");
-                    if (dsIdProp != null)
-                    {
-                        var dsIdVal = dsIdProp.GetValue(ds)?.ToString();
-                        if (!string.IsNullOrEmpty(dsIdVal) && Guid.TryParse(dsIdVal, out var g) && g != Guid.Empty) datasetGuids.Add(g);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Warning parsing datasource: {ex.Message}");
-                }
-            }
-
-            // fallback to report.DatasetId if present
-            if (!string.IsNullOrEmpty(report.DatasetId) && Guid.TryParse(report.DatasetId, out var repDs) && repDs != Guid.Empty)
-                datasetGuids.Add(repDs);
-
-            if (datasetGuids.Count == 0)
-            {
-                // no Power BI datasets referenced - use V1 token for paginated report (no datasets)
-                var genParams = new GenerateTokenRequest(accessLevel: accessLevel);
-                return await pbiClient.Reports.GenerateTokenInGroupAsync(reportWorkspaceId, reportId, genParams);
-            }
-
-            Console.WriteLine("Found dataset GUIDs: " + string.Join(", ", datasetGuids));
-
-            // 3) discover which workspace(s) host these datasets
-            var datasetWorkspaceMap = new Dictionary<Guid, Guid>(); // datasetId -> workspaceId
-                                                                    // Try report workspace first, then enumerate groups visible to the caller
-            foreach (var ds in datasetGuids)
-            {
-                bool found = false;
-                // try report workspace
-                try
-                {
-                    var dsResp = await pbiClient.Datasets.GetDatasetInGroupAsync(reportWorkspaceId, ds.ToString());
-                    if (dsResp != null) { datasetWorkspaceMap[ds] = reportWorkspaceId; found = true; }
-                }
-                catch { /* not found in report workspace */ }
-
-                if (found) continue;
-
-                // enumerate groups visible to the caller (may be restricted by permissions)
-                var groups = await pbiClient.Groups.GetGroupsAsync();
-                foreach (var g in groups.Value)
-                {
-                    try
-                    {
-                        var dsResp = await pbiClient.Datasets.GetDatasetInGroupAsync(g.Id, ds.ToString());
-                        if (dsResp != null) { datasetWorkspaceMap[ds] = g.Id; found = true; break; }
-                    }   
-                    catch { /* ignore 404 for this group */ }
-                }
-
-                if (!found)
-                {
-                    Console.WriteLine($"ERROR: Dataset {ds} not found in report workspace nor in any accessible workspace. Check dataset id and permissions.");
-                    throw new InvalidOperationException($"Dataset {ds} not found or inaccessible.");
-                }
-            }
-
-            // 4) build GenerateTokenRequestV2Dataset list and targetWorkspaces
-            var v2Datasets = new List<GenerateTokenRequestV2Dataset>();
-            var targetWorkspaceSet = new HashSet<Guid>(datasetWorkspaceMap.Values) { reportWorkspaceId }; // ensure report workspace included
-
-            foreach (var kv in datasetWorkspaceMap)
-            {
-                var datasetId = kv.Key;
-
-                // create dataset entry (use typed constructors if available)
-                GenerateTokenRequestV2Dataset dsEntry;
-
-                // prefer strongly-typed constructor if available: new GenerateTokenRequestV2Dataset(string id, XmlaPermissions.ReadOnly)
-                // but to be compatible across SDKs, create instance and set properties
-                dsEntry = new GenerateTokenRequestV2Dataset();
-
-                // set Id (some SDKs expect Guid, some string) via reflection:
-                var idProp = dsEntry.GetType().GetProperty("Id");
-                if (idProp.PropertyType == typeof(Guid) || idProp.PropertyType == typeof(Guid?))
-                    idProp.SetValue(dsEntry, datasetId);
-                else
-                    idProp.SetValue(dsEntry, datasetId.ToString());
-
-                // set XmlaPermissions to ReadOnly (enum-aware)
-                var xmlaProp = dsEntry.GetType().GetProperty("XmlaPermissions");
-                if (xmlaProp != null)
-                {
-                    var propType = Nullable.GetUnderlyingType(xmlaProp.PropertyType) ?? xmlaProp.PropertyType;
-                    if (propType.IsEnum)
-                    {
-                        var enumValue = Enum.Parse(propType, "ReadOnly", ignoreCase: true);
-                        xmlaProp.SetValue(dsEntry, enumValue);
-                    }
-                    else if (xmlaProp.PropertyType == typeof(string))
-                    {
-                        xmlaProp.SetValue(dsEntry, "ReadOnly");
-                    }
-                }
-
-                // set AllowEdit if present
-                var allowEditProp = dsEntry.GetType().GetProperty("AllowEdit");
-                if (allowEditProp != null && (allowEditProp.PropertyType == typeof(bool) || allowEditProp.PropertyType == typeof(bool?)))
-                    allowEditProp.SetValue(dsEntry, false);
-
-                v2Datasets.Add(dsEntry);
-            }
-
-            var v2Reports = new List<GenerateTokenRequestV2Report> { new GenerateTokenRequestV2Report(reportId, allowEdit: false) };
-            var v2TargetWorkspaces = targetWorkspaceSet.Select(w => new GenerateTokenRequestV2TargetWorkspace(w)).ToList();
-
-            var tokenRequestV2 = new GenerateTokenRequestV2(datasets: v2Datasets, reports: v2Reports, targetWorkspaces: v2TargetWorkspaces);
-
-            // Debug: print the final payload (must show xmlaPermissions non-null and targetWorkspaces non-empty)
-            Console.WriteLine("Final tokenRequestV2 JSON:\n" + JsonConvert.SerializeObject(tokenRequestV2, Formatting.Indented,
-                new JsonSerializerSettings { NullValueHandling = NullValueHandling.Include }));
-
-            // 5) generate token
-            var embedToken = await pbiClient.EmbedToken.GenerateTokenAsync(tokenRequestV2);
-            return embedToken;
-        }
-
+        
         public async Task<EmbedToken> GetEmbedTokenForRDLReportV2_OnlyReportWorkspaceAsync(
         PowerBIClient pbiClient,
         Guid reportWorkspaceId, // e.g. c0cb7599-ec65-415f-a845-cc8fc3062be6

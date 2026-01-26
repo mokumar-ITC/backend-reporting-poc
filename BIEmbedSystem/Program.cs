@@ -185,6 +185,15 @@ app.UseStaticFiles(new StaticFileOptions
 // ---------------------------------------------------------
 app.UseHttpsRedirection();
 app.UseCors("DefaultCors");
+app.Use(async (context, next) =>
+{
+    if (context.Request.Method == HttpMethods.Options)
+    {
+        context.Response.StatusCode = StatusCodes.Status200OK;
+        return;
+    }
+    await next();
+});
 app.UseAuthentication();
 app.UseAuthorization();
 

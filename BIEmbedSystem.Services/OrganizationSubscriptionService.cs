@@ -59,6 +59,7 @@ public class OrganizationSubscriptionService : IOrganizationSubscriptionService
             throw new KeyNotFoundException("Organization subscription not found");
 
         // 2. Update subscription fields
+        entity.PlanId = request.PlanId;
         entity.StartDate = request.StartDate;
         entity.EndDate = request.EndDate;
         entity.IsActive = request.IsActive;
@@ -125,6 +126,7 @@ public class OrganizationSubscriptionService : IOrganizationSubscriptionService
             {
                 OrgSubscriptionId = x.OrgSubscriptionId,
                 OrganizationName = x.Organization.Name,
+                OrganizationId = x.Organization.OrganizationId,
                 PlanId = x.PlanId,
                 PlanName = x.Plan.PlanName,
                 StartDate = x.StartDate,

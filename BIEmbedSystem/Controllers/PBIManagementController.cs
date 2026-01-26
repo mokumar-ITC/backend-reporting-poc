@@ -94,6 +94,23 @@ namespace BIEmbedSystem.API.Controllers
             var res = await _pbiMmgtService.SavePBINavigationManagement(navigationManagement,userEmail);
             return Ok(res);
         }
+
+        [HttpPost("save-navigationManagement-order")]
+        [MapToApiVersion("1.0")]
+        public async Task<IActionResult> SaveNavigationManagementOrder([FromBody] List<NavigationOrderDto> navigationOrders)
+        {
+            var userEmail = User.GetDisplayName();
+
+            if (navigationOrders == null || !navigationOrders.Any())
+                return BadRequest("Navigation order list is empty.");
+
+            var result = await _pbiMmgtService
+                .SaveNavigationOrderAsync(navigationOrders, userEmail);
+
+            return Ok(result);
+        }
+
+
         [HttpGet("get-navigationManagement")]
         [MapToApiVersion("1.0")]
         public async Task<ActionResult> GetPBINavigationManagement()
