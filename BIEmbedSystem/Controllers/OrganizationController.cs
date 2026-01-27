@@ -110,7 +110,7 @@ namespace BIEmbedSystem.API.Controllers
             if (request.File == null)
                 return BadRequest("No file provided.");
 
-            var result = await _service.UploadLogoAsync(id, request.File);
+            var result = await _service.UploadLogoAsyncv2(id, request.File);
 
             if (result == null)
                 return NotFound($"Organization with ID {id} not found.");

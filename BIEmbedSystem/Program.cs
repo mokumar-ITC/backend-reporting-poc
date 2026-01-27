@@ -65,8 +65,8 @@ builder.Services.AddCors(options =>
                 "http://localhost:5173"       // Local Dev Frontend
             )
             .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowCredentials();
+            .AllowAnyMethod();
+            //.AllowCredentials();
     });
 });
 
@@ -168,8 +168,6 @@ app.UseSwaggerUI(options =>
     options.SwaggerEndpoint("/swagger/v1/swagger.json", "BIEmbedSystem API v1");
     options.RoutePrefix = "swagger"; // https://localhost:7242/swagger
 });
-app.UseStaticFiles(); // Enables wwwroot
-
 app.UseStaticFiles(); // For wwwroot
 
 app.UseStaticFiles(new StaticFileOptions
@@ -183,17 +181,8 @@ app.UseStaticFiles(new StaticFileOptions
 // ---------------------------------------------------------
 // Pipeline Order (Correct for IIS + JWT + HTTPS)
 // ---------------------------------------------------------
-app.UseHttpsRedirection();
 app.UseCors("DefaultCors");
-app.Use(async (context, next) =>
-{
-    if (context.Request.Method == HttpMethods.Options)
-    {
-        context.Response.StatusCode = StatusCodes.Status200OK;
-        return;
-    }
-    await next();
-});
+app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 

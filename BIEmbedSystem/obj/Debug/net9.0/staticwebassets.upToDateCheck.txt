@@ -8,6 +8,7 @@ wwwroot\assets\logo-8Z-JXOnP.jpg
 wwwroot\index.html
 wwwroot\logos\18f05b3e-a7a0-40b9-8a08-b05401378378_image (1).jpg
 wwwroot\logos\274f1631-e602-4586-9ba2-2cca0d23e5ec_dashboard.png
+wwwroot\logos\2f7d30c6-776e-442b-b04e-77b56ecb38d9_logo.png
 wwwroot\logos\3580ee76-05cd-47e3-9845-4d8cea8f1566_image (1).jpg
 wwwroot\logos\36d72e3b-0951-4952-b859-c3aadc35a987_image.jpg
 wwwroot\logos\3db09bce-2aab-43d9-91fa-a3aefb95bd6d_logo.png
