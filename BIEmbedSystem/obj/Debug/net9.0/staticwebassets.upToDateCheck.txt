@@ -13,6 +13,7 @@ wwwroot\logos\3580ee76-05cd-47e3-9845-4d8cea8f1566_image (1).jpg
 wwwroot\logos\36d72e3b-0951-4952-b859-c3aadc35a987_image.jpg
 wwwroot\logos\3db09bce-2aab-43d9-91fa-a3aefb95bd6d_logo.png
 wwwroot\logos\44027f7a-2c86-4176-9967-249ae0041128_image (1).jpg
+wwwroot\logos\5270db52-8bfa-4772-988a-850fc4b76592_logo.png
 wwwroot\logos\5d46d45d-ed73-4ae3-b926-c77269990d2c_image.jpg
 wwwroot\logos\8c9bd3ba-c0d5-4e5e-b1fe-4fbbaa7f6069_image (1).jpg
 wwwroot\logos\c583ab35-a81f-49d0-a828-96786466486c_image (1).jpg
