@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BIEmbedSystem.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b3e277f796185927dcb01708c46f174e29ad85a1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b48c3e0227142261ac36721ff92e1c05df8986d3")]
 [assembly: System.Reflection.AssemblyProductAttribute("BIEmbedSystem.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BIEmbedSystem.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

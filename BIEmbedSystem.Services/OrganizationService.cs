@@ -228,6 +228,32 @@ namespace BIEmbedSystem.Services
             return await _db.Organizations
                 .AnyAsync(o => o.Name.ToLower() == name.ToLower());
         }
+        public async Task<string?> UploadLogoAsyncv2(int id, IFormFile file)
+        {
+            var org = await _db.Organizations.FindAsync(id);
+            if (org == null) return null;
+
+            var webRoot = _env.WebRootPath
+                ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+
+            var logosPath = Path.Combine(webRoot, "logos");
+
+            if (!Directory.Exists(logosPath))
+                Directory.CreateDirectory(logosPath);
+
+            var safeName = Path.GetFileName(file.FileName);
+            var fileName = $"{Guid.NewGuid()}_{safeName}";
+            var filePath = Path.Combine(logosPath, fileName);
+
+            await using var stream = new FileStream(filePath, FileMode.Create);
+            await file.CopyToAsync(stream);
+
+            org.LogoUrl = $"/logos/{fileName}";
+            await _db.SaveChangesAsync();
+
+            return org.LogoUrl;
+        }
+
         public async Task<string?> UploadLogoAsync(int id, IFormFile file)
         {
             // Check org exists

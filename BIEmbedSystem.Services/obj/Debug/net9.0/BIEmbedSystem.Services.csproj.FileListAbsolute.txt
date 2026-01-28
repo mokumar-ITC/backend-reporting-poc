@@ -18,12 +18,6 @@ C:\InHouseProject-DATA_PLEXUS\Project\BIEmbeddedSystem\BIEmbeddedSystemAPIs\BIEm
 C:\Users\MOKUMAR\Desktop\Publish\BIEmbedSystem.Services.deps.json
 C:\Users\MOKUMAR\Desktop\Publish\BIEmbedSystem.Services.dll
 C:\Users\MOKUMAR\Desktop\Publish\BIEmbedSystem.Services.pdb
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Services\obj\Debug\net9.0\BIEmbedSystem.Services.csproj.AssemblyReference.cache
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Services\obj\Debug\net9.0\BIEmbedSystem.Services.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Services\obj\Debug\net9.0\BIEmbedSystem.Services.AssemblyInfoInputs.cache
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Services\obj\Debug\net9.0\BIEmbedSystem.Services.AssemblyInfo.cs
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Services\obj\Debug\net9.0\BIEmbedSystem.Services.csproj.CoreCompileInputs.cache
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Services\obj\Debug\net9.0\BIEmbedSystem.Services.sourcelink.json
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Services\bin\Debug\net9.0\BIEmbedSystem.Services.deps.json
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Services\bin\Debug\net9.0\BIEmbedSystem.Services.dll
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Services\bin\Debug\net9.0\BIEmbedSystem.Services.pdb
@@ -31,6 +25,12 @@ C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareDa
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Services\bin\Debug\net9.0\BIEmbedSystem.Infrastrucure.dll
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Services\bin\Debug\net9.0\BIEmbedSystem.Infrastrucure.pdb
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Services\bin\Debug\net9.0\BIEmbedSystem.Core.pdb
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Services\obj\Debug\net9.0\BIEmbedSystem.Services.csproj.AssemblyReference.cache
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Services\obj\Debug\net9.0\BIEmbedSystem.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Services\obj\Debug\net9.0\BIEmbedSystem.Services.AssemblyInfoInputs.cache
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Services\obj\Debug\net9.0\BIEmbedSystem.Services.AssemblyInfo.cs
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Services\obj\Debug\net9.0\BIEmbedSystem.Services.csproj.CoreCompileInputs.cache
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Services\obj\Debug\net9.0\BIEmbedSystem.Services.sourcelink.json
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Services\obj\Debug\net9.0\BIEmbedS.8C7C5048.Up2Date
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Services\obj\Debug\net9.0\BIEmbedSystem.Services.dll
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem.Services\obj\Debug\net9.0\refint\BIEmbedSystem.Services.dll
