@@ -22,18 +22,23 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
 
+    # ✅ ADD THIS STEP (IMPORTANT)
+    - name: Create appsettings.Production.json
+      shell: powershell
+      run: |
+        $content = '${{ secrets.APPSETTINGS_PRODUCTION }}'
+        $content | Out-File -FilePath appsettings.Production.json -Encoding utf8
+
     - name: Publish
       run: dotnet publish -c Release -o publish
 
-    # ✅ Stop IIS App Pool safely (won't fail if already stopped)
+    # ✅ Stop IIS App Pool safely
     - name: Stop IIS App Pool
       shell: powershell
       run: |
         $pool = "backendService"
         $appcmd = "$env:windir\system32\inetsrv\appcmd.exe"
-
         $state = & $appcmd list apppool "$pool" /text:state
-
         if ($state -eq "Started") {
           Write-Host "Stopping App Pool: $pool"
           & $appcmd stop apppool /apppool.name:"$pool"
@@ -47,25 +52,21 @@ jobs:
       shell: powershell
       run: |
         $target = "C:\inetpub\wwwroot\MDMAAppPublish"
-
         if (Test-Path $target) {
           Get-ChildItem $target -Recurse -Force | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
         }
         else {
           New-Item -ItemType Directory -Path $target -Force | Out-Null
         }
-
         Copy-Item "publish\*" $target -Recurse -Force
 
-    # ✅ Start IIS App Pool safely (won't fail if already started)
+    # ✅ Start IIS App Pool safely
     - name: Start IIS App Pool
       shell: powershell
       run: |
         $pool = "backendService"
         $appcmd = "$env:windir\system32\inetsrv\appcmd.exe"
-
         $state = & $appcmd list apppool "$pool" /text:state
-
         if ($state -ne "Started") {
           Write-Host "Starting App Pool: $pool"
           & $appcmd start apppool /apppool.name:"$pool"
