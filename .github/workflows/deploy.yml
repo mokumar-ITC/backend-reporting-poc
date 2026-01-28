@@ -25,22 +25,23 @@ jobs:
     - name: Publish
       run: dotnet publish -c Release -o publish
 
+    # ✅ Stop IIS App Pool using CMD (no WebAdministration)
     - name: Stop IIS App Pool
+      shell: cmd
       run: |
-        Import-Module WebAdministration
-        if (Test-Path IIS:\AppPools\backendService) {
-            Stop-WebAppPool -Name "backendService"
-        }
-
-        Start-Sleep -Seconds 3
+        %windir%\system32\inetsrv\appcmd stop apppool /apppool.name:"backendService"
+        timeout /t 3 /nobreak
 
     - name: Deploy to IIS folder
+      shell: powershell
       run: |
-        Get-ChildItem "C:\inetpub\wwwroot\MDMAAppPublish" -Recurse |
-        Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
-        Copy-Item "publish\*" "C:\inetpub\wwwroot\MDMAAppPublish" -Recurse
+        if (Test-Path "C:\inetpub\wwwroot\MDMAAppPublish") {
+          Get-ChildItem "C:\inetpub\wwwroot\MDMAAppPublish" -Recurse | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
+        }
+        Copy-Item "publish\*" "C:\inetpub\wwwroot\MDMAAppPublish" -Recurse -Force
 
+    # ✅ Start IIS App Pool using CMD (no WebAdministration)
     - name: Start IIS App Pool
+      shell: cmd
       run: |
-        Import-Module WebAdministration
-        Start-WebAppPool -Name "backendService"
+        %windir%\system32\inetsrv\appcmd start apppool /apppool.name:"backendService"
