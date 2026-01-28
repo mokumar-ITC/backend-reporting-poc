@@ -244,17 +244,9 @@ C:\Users\MOKUMAR\Desktop\Publish\BIEmbedSystem.API.deps.json
 C:\Users\MOKUMAR\Desktop\Publish\BIEmbedSystem.API.runtimeconfig.json
 C:\Users\MOKUMAR\Desktop\Publish\BIEmbedSystem.API.dll
 C:\Users\MOKUMAR\Desktop\Publish\BIEmbedSystem.API.pdb
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\User\MOKUMAR\Desktop\Publish.v10\web.config
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\User\MOKUMAR\Desktop\Publish.v10\wwwroot\web.config
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\appsettings.json
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\appsettings.Production.json
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\User\MOKUMAR\Desktop\Publish.v10\appsettings.Development.json
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\User\MOKUMAR\Desktop\Publish.v10\appsettings.json
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\User\MOKUMAR\Desktop\Publish.v10\appsettings.Production.json
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\User\MOKUMAR\Desktop\Publish.v10\BIEmbedSystem.API.deps.json
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\User\MOKUMAR\Desktop\Publish.v10\BIEmbedSystem.API.runtimeconfig.json
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\User\MOKUMAR\Desktop\Publish.v10\BIEmbedSystem.API.staticwebassets.endpoints.json
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\BIEmbedSystem.API.staticwebassets.runtime.json
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\BIEmbedSystem.API.staticwebassets.endpoints.json
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\BIEmbedSystem.API.exe
