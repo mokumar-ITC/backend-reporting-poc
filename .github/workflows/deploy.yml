@@ -27,10 +27,10 @@ jobs:
 
     # ✅ Stop IIS App Pool using CMD (no WebAdministration)
     - name: Stop IIS App Pool
-      shell: cmd
+      shell: powershell
       run: |
-        %windir%\system32\inetsrv\appcmd stop apppool /apppool.name:"backendService"
-        timeout /t 3 /nobreak
+        & $env:windir\system32\inetsrv\appcmd stop apppool /apppool.name:"backendService"
+        Start-Sleep -Seconds 3
 
     - name: Deploy to IIS folder
       shell: powershell
