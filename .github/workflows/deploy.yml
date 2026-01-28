@@ -1,0 +1,46 @@
+name: Deploy to IIS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, windows, iis]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restore
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+
+    - name: Publish
+      run: dotnet publish -c Release -o publish
+
+    - name: Stop IIS App Pool
+      run: |
+        Import-Module WebAdministration
+        if (Test-Path IIS:\AppPools\REPORTING_POC_API) {
+            Stop-WebAppPool -Name "REPORTING_POC_API"
+        }
+
+    - name: Deploy to IIS folder
+      run: |
+        Get-ChildItem "C:\inetpub\wwwroot\MDMAAppPublish" -Recurse |
+        Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
+        Copy-Item "publish\*" "C:\inetpub\wwwroot\MDMAAppPublish" -Recurse
+
+    - name: Start IIS App Pool
+      run: |
+        Import-Module WebAdministration
+        Start-WebAppPool -Name "REPORTING_POC_API"
