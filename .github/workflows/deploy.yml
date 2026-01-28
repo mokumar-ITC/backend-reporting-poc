@@ -25,23 +25,51 @@ jobs:
     - name: Publish
       run: dotnet publish -c Release -o publish
 
-    # ✅ Stop IIS App Pool using CMD (no WebAdministration)
+    # ✅ Stop IIS App Pool safely (won't fail if already stopped)
     - name: Stop IIS App Pool
       shell: powershell
       run: |
-        & $env:windir\system32\inetsrv\appcmd stop apppool /apppool.name:"backendService"
-        Start-Sleep -Seconds 3
+        $pool = "backendService"
+        $appcmd = "$env:windir\system32\inetsrv\appcmd.exe"
+
+        $state = & $appcmd list apppool "$pool" /text:state
+
+        if ($state -eq "Started") {
+          Write-Host "Stopping App Pool: $pool"
+          & $appcmd stop apppool /apppool.name:"$pool"
+          Start-Sleep -Seconds 3
+        }
+        else {
+          Write-Host "App Pool $pool already stopped (state: $state) - continue deployment"
+        }
 
     - name: Deploy to IIS folder
       shell: powershell
       run: |
-        if (Test-Path "C:\inetpub\wwwroot\MDMAAppPublish") {
-          Get-ChildItem "C:\inetpub\wwwroot\MDMAAppPublish" -Recurse | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
-        }
-        Copy-Item "publish\*" "C:\inetpub\wwwroot\MDMAAppPublish" -Recurse -Force
+        $target = "C:\inetpub\wwwroot\MDMAAppPublish"
 
-    # ✅ Start IIS App Pool using CMD (no WebAdministration)
+        if (Test-Path $target) {
+          Get-ChildItem $target -Recurse -Force | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
+        }
+        else {
+          New-Item -ItemType Directory -Path $target -Force | Out-Null
+        }
+
+        Copy-Item "publish\*" $target -Recurse -Force
+
+    # ✅ Start IIS App Pool safely (won't fail if already started)
     - name: Start IIS App Pool
-      shell: cmd
+      shell: powershell
       run: |
-        %windir%\system32\inetsrv\appcmd start apppool /apppool.name:"backendService"
+        $pool = "backendService"
+        $appcmd = "$env:windir\system32\inetsrv\appcmd.exe"
+
+        $state = & $appcmd list apppool "$pool" /text:state
+
+        if ($state -ne "Started") {
+          Write-Host "Starting App Pool: $pool"
+          & $appcmd start apppool /apppool.name:"$pool"
+        }
+        else {
+          Write-Host "App Pool $pool already started - OK"
+        }
