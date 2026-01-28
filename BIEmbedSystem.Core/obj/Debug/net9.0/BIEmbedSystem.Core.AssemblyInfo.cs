@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BIEmbedSystem.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1a5360d1433412ba72df846bbfbcfa72cdb75c59")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+024b0fd247a57a5325fb737342d49942d4367179")]
 [assembly: System.Reflection.AssemblyProductAttribute("BIEmbedSystem.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BIEmbedSystem.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

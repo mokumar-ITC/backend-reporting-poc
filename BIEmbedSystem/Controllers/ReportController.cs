@@ -43,9 +43,9 @@ namespace BIEmbedSystem.API.Controllers
         //    _logger.LogInformation("Get API of GetHeaderInfo Version 1");
         //    return Ok(result);
         //}
-        [HttpGet("embedinfo/{ReportId}/{workspaceId}/{userEmail}")]
+        [HttpGet("embedinfo/{ReportId}/{workspaceId}/{userEmail}/{type}/{datasetId}")]
         [MapToApiVersion("1.0")]
-        public async Task<string> GetEmbedInfoAsync(string ReportId, string workspaceId, string userEmail)
+        public async Task<string> GetEmbedInfoAsync(string ReportId, string workspaceId, string userEmail, string type, string datasetId)
         {
             try
             {
@@ -56,8 +56,8 @@ namespace BIEmbedSystem.API.Controllers
                 _azureAd.Value.ScopeBase?.Length);
 
                 var token = Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
-                EmbedParams embedParams = await _reportPbiEmbedService.GetEmbedParams(new Guid(workspaceId), new Guid(ReportId), token, userEmail);
-                //EmbedParams embedParams = await _reportPbiEmbedService.GetEmbedParamsV2(new Guid(workspaceId), new Guid(ReportId), userEmail, token);
+                Guid datasetIdCheck = datasetId == "nil" ? Guid.Empty : new Guid(datasetId);
+                EmbedParams embedParams = userEmail== "fabricreport" ? await _reportPbiEmbedService.GetEmbedParamsV2(new Guid(workspaceId), new Guid(ReportId), userEmail, type, token, datasetIdCheck) : await _reportPbiEmbedService.GetEmbedParams(new Guid(workspaceId), new Guid(ReportId), userEmail, type, token, datasetIdCheck);
 
                 return JsonSerializer.Serialize<EmbedParams>(embedParams);
             }
@@ -71,6 +71,35 @@ namespace BIEmbedSystem.API.Controllers
             {
                 HttpContext.Response.StatusCode = 500;
                 return ex.Message + "\n\n" + ex.StackTrace;
+            }
+        }
+
+        [HttpGet("embedinfov2/{ReportId}/{workspaceId}/{datasetId}/{userEmail}")]
+        [MapToApiVersion("1.0")]
+        public async Task<IActionResult> GetEmbedInfov2Async(string ReportId, string workspaceId, string datasetId, string userEmail)
+        {
+            try
+            {
+                _logger.LogError("AzureAd Loaded → Tenant={tenant}, Client={client}, ScopeBaseLength={len}",
+                    _azureAd.Value.TenantId,
+                    _azureAd.Value.ClientId,
+                    _azureAd.Value.ScopeBase?.Length);
+
+                var token = Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+                var embedParams = await _reportPbiEmbedService.GenerateEmbedTokenWithRlsAsync(new Guid(workspaceId), new Guid(ReportId), new Guid(datasetId), userEmail);
+
+                return Ok(embedParams);
+            }
+            catch (HttpOperationException exc)
+            {
+                HttpContext.Response.StatusCode = (int)exc.Response.StatusCode;
+                var message = string.Format("Status: {0} ({1})\r\nResponse: {2}\r\nRequestId: {3}", exc.Response.StatusCode, (int)exc.Response.StatusCode, exc.Response.Content, exc.Response.Headers["RequestId"].FirstOrDefault());
+                return Content(message);
+            }
+            catch (Exception ex)
+            {
+                HttpContext.Response.StatusCode = 500;
+                return Content(ex.Message + "\n\n" + ex.StackTrace);
             }
         }
 
@@ -216,6 +245,27 @@ namespace BIEmbedSystem.API.Controllers
             try
             {
                 var embedParams = await _reportPbiEmbedService.GetWorkspaceInfo();
+                return Ok(embedParams);
+            }
+            catch (HttpOperationException exc)
+            {
+                HttpContext.Response.StatusCode = (int)exc.Response.StatusCode;
+                var message = string.Format("Status: {0} ({1})\r\nResponse: {2}\r\nRequestId: {3}", exc.Response.StatusCode, (int)exc.Response.StatusCode, exc.Response.Content, exc.Response.Headers["RequestId"].FirstOrDefault());
+                return BadRequest(message);
+            }
+            catch (Exception ex)
+            {
+                HttpContext.Response.StatusCode = 500;
+                return BadRequest(ex.Message + "\n\n" + ex.StackTrace);
+            }
+        }
+        [HttpGet("getWorkspaceInfoByOrg/{OrgId}")]
+        [MapToApiVersion("1.0")]
+        public async Task<IActionResult> GetWorkspaceByOrgInfo(int OrgId)
+        {
+            try
+            {
+                var embedParams = await _reportPbiEmbedService.GetWorkspaceInfoByOrg(OrgId);
                 return Ok(embedParams);
             }
             catch (HttpOperationException exc)

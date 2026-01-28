@@ -810,41 +810,6 @@
   },
   {
     "ContainingType": "BIEmbedSystem.API.Controllers.OrganizationController",
-    "Method": "Create",
-    "RelativePath": "api/v1/organizations",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "BIEmbedSystem.Services.DTO.OrganizationCreateRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "BIEmbedSystem.Services.DTO.OrganizationDto",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 201
-      },
-      {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 400
-      }
-    ]
-  },
-  {
-    "ContainingType": "BIEmbedSystem.API.Controllers.OrganizationController",
     "Method": "GetById",
     "RelativePath": "api/v1/organizations/{id}",
     "HttpMethod": "GET",
@@ -988,6 +953,27 @@
         "StatusCode": 404
       }
     ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.OrganizationController",
+    "Method": "CreateOrganization",
+    "RelativePath": "api/v1/organizations/create/{organisationId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "BIEmbedSystem.Services.DTO.CreateOrganizationRequest",
+        "IsRequired": true
+      },
+      {
+        "Name": "organisationId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "BIEmbedSystem.API.Controllers.OrganizationSubscriptionController",
@@ -1362,6 +1348,22 @@
   },
   {
     "ContainingType": "BIEmbedSystem.API.Controllers.PBIManagementController",
+    "Method": "SaveNavigationManagementOrder",
+    "RelativePath": "api/v1/PBIManagement/save-navigationManagement-order",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "navigationOrders",
+        "Type": "System.Collections.Generic.List\u00601[[BIEmbedSystem.Services.DTO.NavigationOrderDto, BIEmbedSystem.Services, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.PBIManagementController",
     "Method": "SavePBINavigationUserAccess",
     "RelativePath": "api/v1/PBIManagement/save-navigationUserAccess",
     "HttpMethod": "POST",
@@ -1623,42 +1625,6 @@
   },
   {
     "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
-    "Method": "GetEmbedInfoAsync",
-    "RelativePath": "api/v1/Report/embedinfo/{ReportId}/{workspaceId}/{userEmail}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "ReportId",
-        "Type": "System.String",
-        "IsRequired": true
-      },
-      {
-        "Name": "workspaceId",
-        "Type": "System.String",
-        "IsRequired": true
-      },
-      {
-        "Name": "userEmail",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.String",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
     "Method": "GetEmbedInfoPostAsync",
     "RelativePath": "api/v1/Report/embedinfo/{ReportId}/{workspaceId}/{userEmail}",
     "HttpMethod": "POST",
@@ -1700,6 +1666,52 @@
   },
   {
     "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
+    "Method": "GetEmbedInfoAsync",
+    "RelativePath": "api/v1/Report/embedinfo/{ReportId}/{workspaceId}/{userEmail}/{type}/{datasetId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ReportId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "workspaceId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "userEmail",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "type",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "datasetId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
     "Method": "ExportReportFileAsync",
     "RelativePath": "api/v1/Report/embedinfo/exportfile",
     "HttpMethod": "POST",
@@ -1719,6 +1731,37 @@
       {
         "Name": "request",
         "Type": "Microsoft.PowerBI.Api.Models.ExportReportRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
+    "Method": "GetEmbedInfov2Async",
+    "RelativePath": "api/v1/Report/embedinfov2/{ReportId}/{workspaceId}/{datasetId}/{userEmail}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ReportId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "workspaceId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "datasetId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "userEmail",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -1837,6 +1880,22 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
+    "Method": "GetWorkspaceByOrgInfo",
+    "RelativePath": "api/v1/Report/getWorkspaceInfoByOrg/{OrgId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "OrgId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

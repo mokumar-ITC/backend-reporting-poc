@@ -27,6 +27,7 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.0" />
     <PackageReference Include="Microsoft.Graph" Version="5.92.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="5.3.0" />
     <PackageReference Include="Microsoft.PowerBI.Api" Version="4.22.0" />
     <PackageReference Include="MimeKit" Version="4.14.0" />
     <PackageReference Include="SendGrid" Version="9.29.3" />

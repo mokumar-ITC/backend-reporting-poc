@@ -2,8 +2,10 @@
 using BIEmbedSystem.Services;
 using BIEmbedSystem.Services.DTO;
 using BIEmbedSystem.Services.DTO.Requests;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using static Org.BouncyCastle.Math.EC.ECCurve;
 
 namespace BIEmbedSystem.API.Controllers
@@ -14,10 +16,28 @@ namespace BIEmbedSystem.API.Controllers
     public class OrganizationController : ControllerBase
     {
         private readonly OrganizationService _service;
+        private OrganizationDto? any;
 
         public OrganizationController(OrganizationService service)
         {
             _service = service;
+        }
+
+        [HttpPost("create/{organisationId:int?}")]
+        public async Task<IActionResult> CreateOrganization(
+            [FromBody] CreateOrganizationRequest request,
+            int? organisationId
+        )
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var created = await _service.CreateOrUpdateAsync(request, organisationId);
+
+            if (created == null)
+                return BadRequest($"Organization name '{request.Name}' already exists.");
+
+            return CreatedAtAction(nameof(GetById), new { id = created.OrganizationId }, created);
         }
 
         // GET ALL
@@ -41,18 +61,18 @@ namespace BIEmbedSystem.API.Controllers
         }
 
         // CREATE
-        [HttpPost]
-        [ProducesResponseType(typeof(OrganizationDto), 201)]
-        [ProducesResponseType(400)]
-        public async Task<ActionResult> Create([FromBody] OrganizationCreateRequest request)
-        {
-            var created = await _service.CreateAsync(request);
+        //[HttpPost]
+        //[ProducesResponseType(typeof(OrganizationDto), 201)]
+        //[ProducesResponseType(400)]
+        //public async Task<ActionResult> Create([FromBody] OrganizationCreateRequest request)
+        //{
+        //    var created = await _service.CreateAsync(request);
 
-            if (created == null)
-                return BadRequest($"Organization name '{request.Name}' already exists.");
+        //    if (created == null)
+        //        return BadRequest($"Organization name '{request.Name}' already exists.");
 
-            return CreatedAtAction(nameof(GetById), new { id = created.OrganizationId }, created);
-        }
+        //    return CreatedAtAction(nameof(GetById), new { id = created.OrganizationId }, created);
+        //}
 
 
         // UPDATE
@@ -81,7 +101,8 @@ namespace BIEmbedSystem.API.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id:int}/upload-logo")]
+        [HttpPut("{id}/upload-logo")]
+        [Consumes("multipart/form-data")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> UploadLogo(int id, [FromForm] UploadLogoRequest request)
@@ -89,7 +110,7 @@ namespace BIEmbedSystem.API.Controllers
             if (request.File == null)
                 return BadRequest("No file provided.");
 
-            var result = await _service.UploadLogoAsync(id, request.File);
+            var result = await _service.UploadLogoAsyncv2(id, request.File);
 
             if (result == null)
                 return NotFound($"Organization with ID {id} not found.");

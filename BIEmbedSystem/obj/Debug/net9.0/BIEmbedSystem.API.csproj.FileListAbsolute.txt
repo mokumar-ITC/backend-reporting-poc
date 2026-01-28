@@ -244,17 +244,17 @@ C:\Users\MOKUMAR\Desktop\Publish\BIEmbedSystem.API.deps.json
 C:\Users\MOKUMAR\Desktop\Publish\BIEmbedSystem.API.runtimeconfig.json
 C:\Users\MOKUMAR\Desktop\Publish\BIEmbedSystem.API.dll
 C:\Users\MOKUMAR\Desktop\Publish\BIEmbedSystem.API.pdb
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\BIEmbedSystem.API.csproj.AssemblyReference.cache
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\rpswa.dswa.cache.json
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\BIEmbedSystem.API.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\BIEmbedSystem.API.AssemblyInfoInputs.cache
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\BIEmbedSystem.API.AssemblyInfo.cs
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\BIEmbedSystem.API.csproj.CoreCompileInputs.cache
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\BIEmbedSystem.API.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\BIEmbedSystem.API.sourcelink.json
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\User\MOKUMAR\Desktop\Publish.v10\web.config
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\User\MOKUMAR\Desktop\Publish.v10\wwwroot\web.config
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\appsettings.json
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\appsettings.Production.json
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\User\MOKUMAR\Desktop\Publish.v10\appsettings.Development.json
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\User\MOKUMAR\Desktop\Publish.v10\appsettings.json
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\User\MOKUMAR\Desktop\Publish.v10\appsettings.Production.json
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\User\MOKUMAR\Desktop\Publish.v10\BIEmbedSystem.API.deps.json
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\User\MOKUMAR\Desktop\Publish.v10\BIEmbedSystem.API.runtimeconfig.json
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\User\MOKUMAR\Desktop\Publish.v10\BIEmbedSystem.API.staticwebassets.endpoints.json
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\BIEmbedSystem.API.staticwebassets.runtime.json
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\BIEmbedSystem.API.staticwebassets.endpoints.json
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\BIEmbedSystem.API.exe
@@ -277,6 +277,7 @@ C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareDa
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\Azure.Storage.Files.DataLake.dll
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\BCrypt.Net-Next.dll
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\BouncyCastle.Cryptography.dll
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\CsvHelper.dll
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\Dapper.dll
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\Google.Apis.dll
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\Google.Apis.Auth.dll
@@ -340,6 +341,7 @@ C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareDa
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\Microsoft.Identity.Web.TokenAcquisition.dll
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\Microsoft.Identity.Web.TokenCache.dll
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\Microsoft.IdentityModel.Clients.ActiveDirectory.dll
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\Microsoft.IdentityModel.LoggingExtensions.dll
@@ -512,10 +514,22 @@ C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareDa
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\BIEmbedSystem.Core.pdb
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\BIEmbedSystem.Services.pdb
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\BIEmbedSystem.Infrastrucure.pdb
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\BIEmbedSystem.API.csproj.AssemblyReference.cache
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\BIEmbedSystem.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\BIEmbedSystem.API.AssemblyInfoInputs.cache
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\BIEmbedSystem.API.AssemblyInfo.cs
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\BIEmbedSystem.API.csproj.CoreCompileInputs.cache
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\BIEmbedSystem.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\BIEmbedSystem.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\BIEmbedSystem.API.sourcelink.json
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\rjimswa.dswa.cache.json
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\scopedcss\bundle\BIEmbedSystem.API.styles.css
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\compressed\cu7aolghr5-vb9o125v32.gz
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\compressed\h8quql0wl3-fb85xx9t3n.gz
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\compressed\a07f4sthbk-m0wo9pl4n8.gz
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\staticwebassets.development.json
@@ -527,8 +541,3 @@ C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareDa
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\BIEmbedSystem.API.pdb
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\BIEmbedSystem.API.genruntimeconfig.cache
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\ref\BIEmbedSystem.API.dll
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\bin\Debug\net9.0\CsvHelper.dll
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\BIEmbedSystem.API.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\compressed\a07f4sthbk-6t5t61arru.gz
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\compressed\u8xk2o1zxo-sd3bfw4555.gz
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\compressed\510d9v61ol-dc1g4f4p7w.gz
