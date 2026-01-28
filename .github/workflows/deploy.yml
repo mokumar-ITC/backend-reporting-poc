@@ -24,7 +24,7 @@ jobs:
 
     # ✅ ADD THIS STEP (IMPORTANT)
     - name: Create appsettings.Production.json
-      shell: pwsh
+      shell: powershell
       env:
         APPSETTINGS_PRODUCTION: ${{ secrets.APPSETTINGS_PRODUCTION }}
       run: |
@@ -33,13 +33,14 @@ jobs:
             exit 1
         }
 
-        $path = "BIEmbedSystem/appsettings.Production.json"
+        $path = "BIEmbedSystem\appsettings.Production.json"
 
         New-Item -ItemType Directory -Path "BIEmbedSystem" -Force | Out-Null
 
         $env:APPSETTINGS_PRODUCTION | Out-File -FilePath $path -Encoding utf8 -Force
 
-        Write-Host "✅ appsettings.Production.json created at $path"
+        Write-Host "appsettings.Production.json created at $path"
+
 
     - name: Publish
       run: dotnet publish -c Release -o publish
