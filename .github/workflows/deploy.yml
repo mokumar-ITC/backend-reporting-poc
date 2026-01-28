@@ -24,20 +24,22 @@ jobs:
 
     # ✅ ADD THIS STEP (IMPORTANT)
     - name: Create appsettings.Production.json
-      shell: powershell
+      shell: pwsh
+      env:
+        APPSETTINGS_PRODUCTION: ${{ secrets.APPSETTINGS_PRODUCTION }}
       run: |
-        if ([string]::IsNullOrWhiteSpace("${{ secrets.APPSETTINGS_PRODUCTION }}")) {
+        if ([string]::IsNullOrWhiteSpace($env:APPSETTINGS_PRODUCTION)) {
             Write-Error "APPSETTINGS_PRODUCTION secret is empty or missing"
             exit 1
         }
 
-        $path = "BIEmbedSystem\appsettings.Production.json"
-        $content = '${{ secrets.APPSETTINGS_PRODUCTION }}'
+        $path = "BIEmbedSystem/appsettings.Production.json"
 
         New-Item -ItemType Directory -Path "BIEmbedSystem" -Force | Out-Null
-        $content | Out-File -FilePath $path -Encoding utf8 -Force
 
-        Write-Host "appsettings.Production.json created at $path"
+        $env:APPSETTINGS_PRODUCTION | Out-File -FilePath $path -Encoding utf8 -Force
+
+        Write-Host "✅ appsettings.Production.json created at $path"
 
     - name: Publish
       run: dotnet publish -c Release -o publish
