@@ -44,12 +44,32 @@ namespace BIEmbedSystem.API.Controllers
 
 
         // Get user history
-        [HttpGet("list/{organizationId}")]
-        public async Task<ActionResult> GetAllHistory(int organizationId)
+        //[HttpGet("list/{organizationId}")]
+        //public async Task<ActionResult> GetAllHistory(int organizationId)
+        //{
+        //    var result = await _service.GetAllHistoryAsync(organizationId);
+        //    return Ok(result);
+        //}
+
+        [HttpGet("history")]
+        public async Task<IActionResult> GetHistory(
+            int organizationId,
+            int pageNumber = 1,
+            int pageSize = 10,
+            string? search = null
+        )
         {
-            var result = await _service.GetAllHistoryAsync(organizationId);
+            var result = await _service.GetAllHistoryAsync(
+                organizationId,
+                pageNumber,
+                pageSize,
+                search
+            );
+
             return Ok(result);
         }
+
+
     }
 
 }

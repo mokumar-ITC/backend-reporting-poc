@@ -179,14 +179,27 @@ namespace BIEmbedSystem.API.Controllers
             return Ok(res);
         }
 
-        [HttpGet("get-navigationUserAccessByOrg/{orgId:int}")]
+        
+        [HttpGet("get-navigationUserAccessByOrg")]
         [MapToApiVersion("1.0")]
-        public async Task<ActionResult> GetPBINavigationUserAccessByOrg(int orgId)
+        public async Task<IActionResult> GetNavigationUserAccess(
+            int organizationId,
+            int pageNumber = 1,
+            int pageSize = 10,
+            string? search = null
+        )
         {
-            var res = await _pbiMmgtService.GetPBINavigationAccessByOrg(orgId);
-            _logger.LogInformation("get navigationManagement of Version 1" + res);
-            return Ok(res);
+            var result = await _pbiMmgtService.GetPBINavigationAccessByOrg(
+                organizationId,
+                pageNumber,
+                pageSize,
+                search
+            );
+
+            return Ok(result);
         }
+
+
 
         //create the api for Multi PBI management
         [HttpGet("get-refreshable-for-capacity")]

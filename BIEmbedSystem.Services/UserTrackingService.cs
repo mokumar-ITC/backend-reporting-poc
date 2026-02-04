@@ -64,12 +64,35 @@ namespace BIEmbedSystem.Services
         }
 
 
-        public async Task<List<UserTrackingResponse>> GetAllHistoryAsync(int OrganizationId)
+        public async Task<PagedResponse<UserTrackingResponse>> GetAllHistoryAsync(
+    int organizationId,
+    int pageNumber,
+    int pageSize,
+    string? search
+)
         {
-            return await _db.UserTrackings
-                .Where(x => x.OrganizationId == OrganizationId)
+            var query = _db.UserTrackings
+                .Where(x => x.OrganizationId == organizationId)
                 .Include(x => x.User)
+                .AsQueryable();
+
+            // 🔍 SEARCH (server-side)
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                query = query.Where(x =>
+                    x.User.FullName.Contains(search) ||
+                    x.ActionName.Contains(search) ||
+                    x.WorkspaceId.Contains(search) ||
+                    x.ReportId.Contains(search)
+                );
+            }
+
+            var totalRecords = await query.CountAsync();
+
+            var data = await query
                 .OrderByDescending(x => x.OccurredOn)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
                 .Select(x => new UserTrackingResponse
                 {
                     Id = x.TrackingId,
@@ -77,9 +100,21 @@ namespace BIEmbedSystem.Services
                     WorkspaceId = x.WorkspaceId,
                     ReportId = x.ReportId,
                     ActionName = x.ActionName,
-                    OccurredOn = x.OccurredOn,
-                }).ToListAsync();
+                    OccurredOn = x.OccurredOn
+                })
+                .ToListAsync();
+
+            return new PagedResponse<UserTrackingResponse>
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize,
+                TotalRecords = totalRecords,
+                TotalPages = (int)Math.Ceiling(totalRecords / (double)pageSize),
+                Data = data
+            };
         }
+
+
     }
 
 }

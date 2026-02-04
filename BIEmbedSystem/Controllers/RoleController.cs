@@ -23,10 +23,24 @@ namespace BIEmbedSystem.API.Controllers
         public async Task<IActionResult> GetAll()
             => Ok(await _service.GetAllAsync());
 
-        [HttpGet("org/{orgId:int}")]
+        [HttpGet("org")]
         [ProducesResponseType(typeof(IEnumerable<RoleDto>), 200)]
-        public async Task<IActionResult> GetByOrg(int orgId)
-            => Ok(await _service.GetByOrgAsync(orgId));
+        public async Task<IActionResult> GetByOrg(
+            int organizationId,
+            int pageNumber = 1,
+            int pageSize = 10,
+            string? search = null
+        )
+        {
+            var result = await _service.GetByOrgByPageAsync(
+                organizationId,
+                pageNumber,
+                pageSize,
+                search
+            );
+
+            return Ok(result);
+        }
 
         [HttpGet("{id:int}")]
         [ProducesResponseType(typeof(RoleDto), 200)]

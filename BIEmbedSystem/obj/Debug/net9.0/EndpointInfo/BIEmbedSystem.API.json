@@ -2190,19 +2190,43 @@
         }
       }
     },
-    "/api/v1/PBIManagement/get-navigationUserAccessByOrg/{orgId}": {
+    "/api/v1/PBIManagement/get-navigationUserAccessByOrg": {
       "get": {
         "tags": [
           "PBIManagement"
         ],
         "parameters": [
           {
-            "name": "orgId",
-            "in": "path",
-            "required": true,
+            "name": "organizationId",
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -3280,19 +3304,43 @@
         }
       }
     },
-    "/api/v1/roles/org/{orgId}": {
+    "/api/v1/roles/org": {
       "get": {
         "tags": [
           "Role"
         ],
         "parameters": [
           {
-            "name": "orgId",
-            "in": "path",
-            "required": true,
+            "name": "organizationId",
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -5603,7 +5651,7 @@
         }
       }
     },
-    "/api/v1/tracking/list/{organizationId}": {
+    "/api/v1/tracking/history": {
       "get": {
         "tags": [
           "UserTracking"
@@ -5611,11 +5659,35 @@
         "parameters": [
           {
             "name": "organizationId",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -7464,6 +7536,9 @@
           "email": {
             "type": "string",
             "nullable": true
+          },
+          "mode": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false

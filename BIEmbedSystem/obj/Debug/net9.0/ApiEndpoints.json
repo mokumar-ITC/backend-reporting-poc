@@ -1176,16 +1176,31 @@
   },
   {
     "ContainingType": "BIEmbedSystem.API.Controllers.PBIManagementController",
-    "Method": "GetPBINavigationUserAccessByOrg",
-    "RelativePath": "api/v1/PBIManagement/get-navigationUserAccessByOrg/{orgId}",
+    "Method": "GetNavigationUserAccess",
+    "RelativePath": "api/v1/PBIManagement/get-navigationUserAccessByOrg",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "orgId",
+        "Name": "organizationId",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
+      },
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -2112,15 +2127,30 @@
   {
     "ContainingType": "BIEmbedSystem.API.Controllers.RoleController",
     "Method": "GetByOrg",
-    "RelativePath": "api/v1/roles/org/{orgId}",
+    "RelativePath": "api/v1/roles/org",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "orgId",
+        "Name": "organizationId",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
+      },
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [
@@ -2802,8 +2832,8 @@
   },
   {
     "ContainingType": "BIEmbedSystem.API.Controllers.UserTrackingController",
-    "Method": "GetAllHistory",
-    "RelativePath": "api/v1/tracking/list/{organizationId}",
+    "Method": "GetHistory",
+    "RelativePath": "api/v1/tracking/history",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -2811,7 +2841,22 @@
       {
         "Name": "organizationId",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
+      },
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

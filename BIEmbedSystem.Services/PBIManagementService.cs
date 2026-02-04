@@ -317,14 +317,52 @@ namespace BIEmbedSystem.Services
             var GetAll = await _db.NavigationUserAccesses.Where(u => u.IsActive == true && u.UserEmail==UserEmail).ToListAsync();
             return GetAll;
         }
-        public async Task<List<PBINavigationUserAccess>> GetPBINavigationAccessByOrg(int OrgId)
+        
+        public async Task<PagedResponse<PBINavigationUserAccess>>GetPBINavigationAccessByOrg(
+            int orgId,
+            int pageNumber = 1,
+            int pageSize = 10,
+            string? search = null
+            )
         {
-            if (OrgId==null)
-                return new List<PBINavigationUserAccess>(); // or throw exception
+            if (pageNumber <= 0) pageNumber = 1;
+            if (pageSize <= 0) pageSize = 10;
 
-            return await _db.NavigationUserAccesses
-                .Where(u => u.OrganizationId == OrgId)
+            var response = new PagedResponse<PBINavigationUserAccess>
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+
+            if (orgId <= 0)
+                return response;
+
+            var query = _db.NavigationUserAccesses
+                .AsNoTracking()
+                .Where(x => x.OrganizationId == orgId);
+
+            // 🔍 SEARCH (email / userId)
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                search = search.Trim();
+                query = query.Where(x =>
+                    x.UserEmail.Contains(search) ||
+                    x.UserId.Contains(search)
+                );
+            }
+
+            response.TotalRecords = await query.CountAsync();
+            response.TotalPages = (int)Math.Ceiling(
+                response.TotalRecords / (double)pageSize
+            );
+
+            response.Data = await query
+                .OrderByDescending(x => x.Id)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync();
+
+            return response;
         }
 
         public async Task<string> BulkUpdatePBINavigationUserAccess(
