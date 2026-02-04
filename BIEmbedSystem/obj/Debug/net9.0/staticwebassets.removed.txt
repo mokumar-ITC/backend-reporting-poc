@@ -1,2 +1,1 @@
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\wwwroot\assets\index-BTP-Pn82.js
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\wwwroot\assets\index-CydCXFDI.css
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\wwwroot\assets\index-C4bO9mst.js
