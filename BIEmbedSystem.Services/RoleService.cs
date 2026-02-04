@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System.Formats.Asn1;
 using System.Globalization;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace BIEmbedSystem.Services
 {
@@ -23,6 +24,21 @@ namespace BIEmbedSystem.Services
         public async Task<List<RoleDto>> GetAllAsync()
         {
             return await _db.Roles
+                .Select(r => new RoleDto
+                {
+                    Id = r.Id,
+                    Name = r.Name,
+                    OrganizationId = r.OrganizationId,
+                    IsActive = r.IsActive
+                })
+                .ToListAsync();
+        }
+
+        public async Task<List<RoleDto>> GetByOrgByAsync(int orgId)
+        {
+            return await _db.Roles
+                .Where(r => r.OrganizationId == orgId)
+                .OrderBy(r => r.Name)
                 .Select(r => new RoleDto
                 {
                     Id = r.Id,
