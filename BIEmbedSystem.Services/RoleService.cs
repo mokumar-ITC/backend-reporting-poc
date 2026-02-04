@@ -33,10 +33,42 @@ namespace BIEmbedSystem.Services
                 .ToListAsync();
         }
 
-        public async Task<List<RoleDto>> GetByOrgAsync(int orgId)
+        public async Task<PagedResponse<RoleDto>> GetByOrgByPageAsync(
+            int orgId,
+            int pageNumber = 1,
+            int pageSize = 10,
+            string? search = null
+        )
         {
-            return await _db.Roles
-                .Where(r => r.OrganizationId == orgId)
+            var response = new PagedResponse<RoleDto>
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+
+            if (orgId <= 0)
+                return response;
+
+            var query = _db.Roles
+                .Where(r => r.OrganizationId == orgId);
+
+            // 🔍 SEARCH (Role Name)
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                query = query.Where(r =>
+                    r.Name.Contains(search)
+                );
+            }
+
+            response.TotalRecords = await query.CountAsync();
+            response.TotalPages = (int)Math.Ceiling(
+                response.TotalRecords / (double)pageSize
+            );
+
+            response.Data = await query
+                .OrderBy(r => r.Name)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
                 .Select(r => new RoleDto
                 {
                     Id = r.Id,
@@ -45,7 +77,10 @@ namespace BIEmbedSystem.Services
                     IsActive = r.IsActive
                 })
                 .ToListAsync();
+
+            return response;
         }
+
 
         public async Task<RoleDto?> GetByIdAsync(int id)
         {
@@ -171,7 +206,7 @@ namespace BIEmbedSystem.Services
                 catch (Exception ex)
                 {
                     result.Failed++;
-                    result.Errors.Add($"[{record.Name}] {ex.Message}");
+                    result.Errors.Add($"{record.Name}");
                 }
             }
 

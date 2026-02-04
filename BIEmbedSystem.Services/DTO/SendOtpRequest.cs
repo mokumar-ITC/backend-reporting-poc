@@ -9,5 +9,7 @@ namespace BIEmbedSystem.Services.DTO
     public class SendOtpRequest
     {
         public string Email { get; set; } = "";
+
+        public bool Mode { get; set; } = false;
     }
 }

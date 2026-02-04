@@ -60,6 +60,55 @@ namespace BIEmbedSystem.Services
                 }).ToListAsync();
         }
 
+        public async Task<PagedResponse<UserDto>> GetAllByOrgByPageAsync(
+            int organizationId,
+            int pageNumber,
+            int pageSize,
+            string? search
+        )
+        {
+            var query = _db.Users
+                .Where(u => u.OrganizationId == organizationId)
+                .AsQueryable();
+
+            // 🔍 SEARCH
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                query = query.Where(u =>
+                    u.FullName.Contains(search) ||
+                    u.Email.Contains(search) 
+                );
+            }
+
+            var totalRecords = await query.CountAsync();
+
+            var users = await query
+                .OrderByDescending(u => u.CreatedOn)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .Select(u => new UserDto
+                {
+                    UserId = u.UserId,
+                    FullName = u.FullName,
+                    Email = u.Email,
+                    Role = u.Role,
+                    CreatedOn = u.CreatedOn,
+                    IsActive = u.IsActive,
+                    OrganizationId = u.OrganizationId
+                })
+                .ToListAsync();
+
+            return new PagedResponse<UserDto>
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize,
+                TotalRecords = totalRecords,
+                TotalPages = (int)Math.Ceiling(totalRecords / (double)pageSize),
+                Data = users
+            };
+        }
+
+
         public async Task<UserDto?> GetByIdAsync(int id)
         {
 
@@ -321,11 +370,20 @@ namespace BIEmbedSystem.Services
             };
         }
 
+        
 
-        public async Task<bool> SendOtpAsync(string email)
+        public async Task<bool> SendOtpAsync(string email, bool mode)
         {
             var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == email);
-            if (user == null) return false;
+
+            if (!mode && user != null)
+            {
+                return false;
+            }
+            if (mode && user == null)
+            {
+                return false;
+            }
 
             var otp = new Random().Next(100000, 999999).ToString();
 
@@ -395,7 +453,7 @@ namespace BIEmbedSystem.Services
                 catch (Exception ex)
                 {
                     result.Failed++;
-                    result.Errors.Add($"[{request.Email}] {ex.Message}");
+                    result.Errors.Add($"{request.Email}");
                 }
             }
 

@@ -125,11 +125,21 @@ namespace BIEmbedSystem.API.Controllers
         [ProducesResponseType(404)]
         public async Task<ActionResult> ForgotPassword([FromBody] SendOtpRequest request)
         {
-            var sent = await _service.SendOtpAsync(request.Email);
+            var sent = await _service.SendOtpAsync(request.Email, request.Mode);
 
-            if (!sent) return NotFound("Email not found.");
+            if (!sent)
+            {
+                if (request.Mode)
+                {
+                    return NotFound("Email not found.");
+                }
+
+                return Conflict("Email already exists.");
+            }
 
             return Ok("OTP sent to your email.");
+
+
         }
 
         [HttpPost("verify-otp")]

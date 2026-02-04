@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BIEmbedSystem.Services")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+024b0fd247a57a5325fb737342d49942d4367179")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+927e55937f2a10d17cc1cf6d26a2425140eb5ad0")]
 [assembly: System.Reflection.AssemblyProductAttribute("BIEmbedSystem.Services")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BIEmbedSystem.Services")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
