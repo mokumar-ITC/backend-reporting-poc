@@ -2166,6 +2166,32 @@
     ]
   },
   {
+    "ContainingType": "BIEmbedSystem.API.Controllers.RoleController",
+    "Method": "GetByOrg",
+    "RelativePath": "api/v1/roles/org/{organizationId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "organizationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[BIEmbedSystem.Services.DTO.RoleDto, BIEmbedSystem.Services, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "BIEmbedSystem.API.Controllers.SemanticSchedulerController",
     "Method": "Delete",
     "RelativePath": "api/v1/semantic-schedulers/{id}",
@@ -3269,6 +3295,47 @@
           "text/json"
         ],
         "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.UserController",
+    "Method": "GetUsers",
+    "RelativePath": "api/v1/users/users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "organizationId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.PagedResponse\u00601[[BIEmbedSystem.Services.DTO.UserDto, BIEmbedSystem.Services, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
       }
     ]
   },

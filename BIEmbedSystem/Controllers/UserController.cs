@@ -39,6 +39,30 @@ namespace BIEmbedSystem.API.Controllers
             return Ok(users);
         }
 
+        [HttpGet("users")]
+        public async Task<ActionResult<PagedResponse<UserDto>>> GetUsers(
+            int organizationId,
+            int pageNumber = 1,
+            int pageSize = 10,
+            string? search = null
+        )
+        {
+            if (organizationId <= 0)
+                return BadRequest("organizationId is required");
+
+            if (pageNumber <= 0) pageNumber = 1;
+            if (pageSize <= 0) pageSize = 10;
+
+            var result = await _service.GetAllByOrgByPageAsync(
+                organizationId,
+                pageNumber,
+                pageSize,
+                search
+            );
+
+            return Ok(result);
+        }
+
         // GET: api/v1.0/users/{id}
         [HttpGet("{id:int}")]
         [ProducesResponseType(typeof(UserDto), 200)]

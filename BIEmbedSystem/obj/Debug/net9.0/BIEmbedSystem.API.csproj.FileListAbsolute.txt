@@ -519,9 +519,6 @@ C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareDa
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\scopedcss\bundle\BIEmbedSystem.API.styles.css
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\compressed\cu7aolghr5-vb9o125v32.gz
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\compressed\h8quql0wl3-fb85xx9t3n.gz
-C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\compressed\a07f4sthbk-m0wo9pl4n8.gz
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\staticwebassets.development.json
@@ -533,3 +530,6 @@ C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareDa
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\BIEmbedSystem.API.pdb
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\BIEmbedSystem.API.genruntimeconfig.cache
 C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\ref\BIEmbedSystem.API.dll
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\compressed\c195h383kw-xz51lbazpd.gz
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\compressed\emw0swa5h7-hq7s4rx6q3.gz
+C:\Users\MOKUMAR\Desktop\ShareDataProject\ShareDataProject\Reporting Hub\ShareData\APIS\BIEmbedSystem\obj\Debug\net9.0\compressed\a07f4sthbk-ccrlpnphlj.gz
