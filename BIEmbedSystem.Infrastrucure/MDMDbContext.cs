@@ -36,7 +36,13 @@ namespace BIEmbedSystem.Infrastrucure
         public DbSet<PasswordResetOtp> PasswordResetOtps { get; set; }
         public DbSet<UserTracking> UserTrackings { get; set; }
         public virtual DbSet<PowerBiBookmark> PowerBI_Bookmarks { get; set; }
-        
+
+        public virtual DbSet<AiAgent> AiAgents { get; set; }
+
+        public virtual DbSet<AiAgentSemanticModel> AiAgentSemanticModels { get; set; }
+
+
+
         public virtual DbSet<PBIRLSSecurity> PowerBI_Security { get; set; }
 
         public virtual DbSet<Role> Roles { get; set; }

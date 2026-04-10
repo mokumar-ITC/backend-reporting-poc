@@ -21,6 +21,46 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "BIEmbedSystem.API.Controllers.AiAgentController",
+    "Method": "Query",
+    "RelativePath": "api/v1/AiAgent/query",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "BIEmbedSystem.Services.DTO.AiQueryRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.AiQueryResponseDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
     "ContainingType": "BIEmbedSystem.API.Controllers.FabricCapacityController",
     "Method": "CreateScheduler",
     "RelativePath": "api/v1/capacities/scheduler",
@@ -610,6 +650,476 @@
           "text/json"
         ],
         "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.DatasetTableController",
+    "Method": "GetLakehousesDefaultWorkspaceAsync",
+    "RelativePath": "api/v1/DatasetTable/lakehouses/default-workspace",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.DatasetTableController",
+    "Method": "GetTablesByDatasetAsync",
+    "RelativePath": "api/v1/DatasetTable/tables/dataset/{workspaceId}/{datasetId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "workspaceId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "datasetId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.DatasetTablesResponseDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.DatasetTableController",
+    "Method": "GetTablesByReportDefaultWorkspaceAsync",
+    "RelativePath": "api/v1/DatasetTable/tables/default-workspace/report/{reportId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reportId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.DatasetTablesResponseDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.DatasetTableController",
+    "Method": "GetTablesByReportAsync",
+    "RelativePath": "api/v1/DatasetTable/tables/report/{workspaceId}/{reportId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "workspaceId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "reportId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.DatasetTablesResponseDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.DatasetTableController",
+    "Method": "GetWorkspaceTableSummaryAsync",
+    "RelativePath": "api/v1/DatasetTable/tables/workspace/{workspaceId}/summary",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "workspaceId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[BIEmbedSystem.Services.DTO.ReportDatasetTableSummaryDto, BIEmbedSystem.Services, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
+    "ContainingType": "DataPlexus.Controllers.LakehouseController",
+    "Method": "GetTable",
+    "RelativePath": "api/v1/fabric-lakehouse/getTable",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
+    "ContainingType": "DataPlexus.Controllers.LakehouseController",
+    "Method": "GetTableColumn",
+    "RelativePath": "api/v1/fabric-lakehouse/GetTableColumn",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tableName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
+    "ContainingType": "DataPlexus.Controllers.LakehouseController",
+    "Method": "GetColumnNamesOnlyAsync",
+    "RelativePath": "api/v1/fabric-lakehouse/lakehouse-table-column/{lakehouseName}/table/{tableName}/column-names",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lakehouseName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "tableName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DataPlexus.Controllers.LakehouseController",
+    "Method": "GetLakehouseTableData",
+    "RelativePath": "api/v1/fabric-lakehouse/lakehouse/{lakehouseName}/table/{tableName}/getdata",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lakehouseName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "tableName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "topN",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
+    "ContainingType": "DataPlexus.Controllers.LakehouseController",
+    "Method": "GetTablesAsync",
+    "RelativePath": "api/v1/fabric-lakehouse/lakehouse/{lakehouseName}/tables",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lakehouseName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DataPlexus.Controllers.LakehouseController",
+    "Method": "GetTableData",
+    "RelativePath": "api/v1/fabric-lakehouse/table/{tableName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tableName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "topN",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
+    "ContainingType": "DataPlexus.Controllers.LakehouseController",
+    "Method": "GetFilteredTableData",
+    "RelativePath": "api/v1/fabric-lakehouse/table/{tableName}/filter",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tableName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "columnName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "filterValue",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
       }
     ]
   },
@@ -1810,6 +2320,22 @@
         "Name": "datasetId",
         "Type": "System.String",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.ReportController",
+    "Method": "GetDatasetsWithRoles",
+    "RelativePath": "api/v1/Report/getDatasetsWithRoles/{groupId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "groupId",
+        "Type": "System.String",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -3421,6 +3947,312 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.AiAgentController",
+    "Method": "Query",
+    "RelativePath": "api/v2/AiAgent/query",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "BIEmbedSystem.Services.DTO.AiQueryRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.AiQueryResponseDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
+    "ContainingType": "DataPlexus.Controllers.LakehouseController",
+    "Method": "GetTable",
+    "RelativePath": "api/v2/fabric-lakehouse/getTable",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
+    "ContainingType": "DataPlexus.Controllers.LakehouseController",
+    "Method": "GetTableColumn",
+    "RelativePath": "api/v2/fabric-lakehouse/GetTableColumn",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tableName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
+    "ContainingType": "DataPlexus.Controllers.LakehouseController",
+    "Method": "GetColumnNamesOnlyAsync",
+    "RelativePath": "api/v2/fabric-lakehouse/lakehouse-table-column/{lakehouseName}/table/{tableName}/column-names",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lakehouseName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "tableName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DataPlexus.Controllers.LakehouseController",
+    "Method": "GetLakehouseTableData",
+    "RelativePath": "api/v2/fabric-lakehouse/lakehouse/{lakehouseName}/table/{tableName}/getdata",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lakehouseName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "tableName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "topN",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
+    "ContainingType": "DataPlexus.Controllers.LakehouseController",
+    "Method": "GetTablesAsync",
+    "RelativePath": "api/v2/fabric-lakehouse/lakehouse/{lakehouseName}/tables",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lakehouseName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DataPlexus.Controllers.LakehouseController",
+    "Method": "GetTableData",
+    "RelativePath": "api/v2/fabric-lakehouse/table/{tableName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tableName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "topN",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
+    "ContainingType": "DataPlexus.Controllers.LakehouseController",
+    "Method": "GetFilteredTableData",
+    "RelativePath": "api/v2/fabric-lakehouse/table/{tableName}/filter",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tableName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "columnName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "filterValue",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      }
+    ]
   },
   {
     "ContainingType": "BIEmbedSystem.API.Controllers.OneLakeController",

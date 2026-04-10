@@ -259,6 +259,7 @@ namespace BIEmbedSystem.API.Controllers
                 return BadRequest(ex.Message + "\n\n" + ex.StackTrace);
             }
         }
+
         [HttpGet("getWorkspaceInfoByOrg/{OrgId}")]
         [MapToApiVersion("1.0")]
         public async Task<IActionResult> GetWorkspaceByOrgInfo(int OrgId)
@@ -280,6 +281,40 @@ namespace BIEmbedSystem.API.Controllers
                 return BadRequest(ex.Message + "\n\n" + ex.StackTrace);
             }
         }
+
+        [HttpGet("getDatasetsWithRoles/{groupId}")]
+        [MapToApiVersion("1.0")]
+        public async Task<IActionResult> GetDatasetsWithRoles(string groupId)
+        {
+            try
+            {
+                var datasets = await _reportPbiEmbedService.GetDatasetsWithRoles(groupId);
+                return Ok(datasets);
+            }
+            catch (HttpOperationException exc)
+            {
+                HttpContext.Response.StatusCode = (int)exc.Response.StatusCode;
+
+                var message = string.Format(
+                    "Status: {0} ({1})\r\nResponse: {2}\r\nRequestId: {3}",
+                    exc.Response.StatusCode,
+                    (int)exc.Response.StatusCode,
+                    exc.Response.Content,
+                    exc.Response.Headers["RequestId"].FirstOrDefault()
+                );
+
+                return BadRequest(message);
+            }
+            catch (Exception ex)
+            {
+                HttpContext.Response.StatusCode = 500;
+
+                return BadRequest(
+                    ex.Message + "\n\n" + ex.StackTrace
+                );
+            }
+        }
+
         [HttpGet("getReportList")]
         [MapToApiVersion("1.0")]
         public async Task<IActionResult> GetReportListAsync()

@@ -94,9 +94,9 @@ namespace BIEmbedSystem.Services
         public async Task<string> GetEmbedTokenAsync()
         {
             try {
-            // 1) Acquire an app-only token (service principal) for the Power BI resource
-            //var authority = $" https://login.microsoftonline.com/{azureAd.Value.TenantId} ";
-            var authority=$"https://login.microsoftonline.com/common/";
+                // 1) Acquire an app-only token (service principal) for the Power BI resource
+            var authority = $" https://login.microsoftonline.com/{azureAd.Value.TenantId}";
+            //var authority=$"https://login.microsoftonline.com/common/";
             var pbiScope = new[] { " https://analysis.windows.net/powerbi/api/.default " };
 
             var app = ConfidentialClientApplicationBuilder
@@ -106,49 +106,7 @@ namespace BIEmbedSystem.Services
                 .Build();
 
             var authResult = await app.AcquireTokenForClient(pbiScope).ExecuteAsync();
-            var tokenCredentials = new TokenCredentials(authResult.AccessToken, "Bearer");
-
-            
-            // 2) Create the Power BI client
-            using var pbiClient = new PowerBIClient(new Uri(" https://api.powerbi.com/ "), tokenCredentials);
-
-            // (Optional) Validate objects exist & are accessible by the SP
-            var report = await pbiClient.Reports.GetReportInGroupAsync(new Guid(azureAd.Value.WorkspaceId), new Guid("02caaeed-38a2-46f8-beb3-7214243eb7e8"));
-
-            // 3) Build EffectiveIdentity for RLS
-            var rlsIdentity = new EffectiveIdentity(
-                 username: "abishnoi@itconvergence.com",                        // REQUIRED with SP when using RLS
-                 roles: new List<string> { "asset_id_g1" },         // EXACT role names from your dataset
-                datasets: new List<string> { "5bff60a9-c158-4d12-b53e-2e0e06b846d0" }
-            );
-            var report1 = new GenerateTokenRequestV2Report(new Guid("02caaeed-38a2-46f8-beb3-7214243eb7e8"));
-            // 4) Build the token request
-            //var tokenRequest = new GenerateTokenRequestV2(
-            //     //reports: new List<GenerateTokenRequestV2Report> {
-            //     //new GenerateTokenRequestV2Report(new Guid("02caaeed-38a2-46f8-beb3-7214243eb7e8"))
-            //     //},
-            //     reports: new List<GenerateTokenRequestV2Report>() { report1 },
-            //    datasets: new List<GenerateTokenRequestV2Dataset> {
-            //    new GenerateTokenRequestV2Dataset("5bff60a9-c158-4d12-b53e-2e0e06b846d0")
-            //    },
-            //    targetWorkspaces: new List<GenerateTokenRequestV2TargetWorkspace> {
-            //    new GenerateTokenRequestV2TargetWorkspace(new Guid("c0cb7599-ec65-415f-a845-cc8fc3062be6"))
-            //    },
-            //    identities: new List<EffectiveIdentity> { rlsIdentity },
-            //    // accessLevel defaults to "View" if omitted; set explicitly if you like:
-            //    // accessLevel: "View"
-            //    // allowSaveAs: false
-            //    // lifetimeInMinutes: 60
-            //    // etc.
-            //    null, null, null, null, null, null
-            //);
-
-            //// 5) Generate the embed token
-            //var embedToken = await pbiClient.EmbedToken.GenerateTokenAsync(tokenRequest);
-
-            //// Return the JWT (you’ll send this to your frontend to embed with powerbi-client)
-            //return embedToken.Token;
-            return "";
+                return authResult.AccessToken;
             }
             catch (Exception ex) {
                 return ex.Message;

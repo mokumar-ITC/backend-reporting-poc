@@ -22,6 +22,7 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using Group = Microsoft.PowerBI.Api.Models.Group;
 
@@ -98,7 +99,7 @@ namespace BIEmbedSystem.Services
             //var result = res;
             return true;
         }
-        
+
         public async Task<bool> GetReportSubscription(Guid reportId)
         {
             PowerBIClient pbiClient = await this.GetPowerBIClient();
@@ -139,6 +140,71 @@ namespace BIEmbedSystem.Services
 
             return orgWorkspaces;
         }
+
+        public async Task<List<DatasetWithRolesDto>> GetDatasetsWithRoles(string groupId)
+        {
+            var pbiClient = await GetPowerBIClient();
+
+            var workspaceId = Guid.Parse(groupId);
+
+            var result = new List<DatasetWithRolesDto>();
+
+            // 1️⃣ Get datasets via SDK (this part works in old SDK)
+            var datasetsResponse = await pbiClient.Datasets
+                .GetDatasetsInGroupAsync(workspaceId);
+
+            // This is the common client creation logic for Admin APIs
+            TokenCredential credential = new ClientSecretCredential(azureAd.Value.TenantId, azureAd.Value.ClientId, azureAd.Value.ClientSecret);
+            AccessToken token = await credential.GetTokenAsync(
+                new TokenRequestContext(new[] { PowerBIResourceUrl }),
+                default // Add CancellationToken as the second argument
+            );
+
+            using var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", token.Token);
+
+            foreach (var dataset in datasetsResponse.Value)
+            {
+                var dto = new DatasetWithRolesDto
+                {
+                    Id = dataset.Id.ToString(),
+                    Name = dataset.Name,
+                    Roles = new List<RoleRLSDto>()
+                };
+
+                try
+                {
+                    // 2️⃣ Call REST API directly
+                    var rolesResponse = await httpClient.GetStringAsync(
+                        $"https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets/{dataset.Id}/roles");
+
+                    var rolesJson = JsonDocument.Parse(rolesResponse);
+
+                    if (rolesJson.RootElement.TryGetProperty("value", out var roles))
+                    {
+                        foreach (var role in roles.EnumerateArray())
+                        {
+                            dto.Roles.Add(new RoleRLSDto
+                            {
+                                Id = role.GetProperty("id").GetString(),
+                                Name = role.GetProperty("name").GetString()
+                            });
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    // Dataset has no RLS roles OR API blocked
+                    // Safe to ignore
+                }
+
+                result.Add(dto);
+            }
+
+            return result;
+        }
+
 
         public async Task<List<string>> GetSubscriptions()
         {
@@ -202,7 +268,7 @@ namespace BIEmbedSystem.Services
                 isRlsEnabled = false;
                 effectiveIdentityApplied = false;
             }
-            else if(reportData.Type == "Report")
+            else if (reportData.Type == "Report")
             {
                 var datasetIds = new List<string>();
                 if (!string.IsNullOrEmpty(pbiReport.DatasetId))
@@ -241,7 +307,7 @@ namespace BIEmbedSystem.Services
                     identities: new List<EffectiveIdentity> { identity }
                 );
 
-                embedToken =  await pbiClient.EmbedToken.GenerateTokenAsync(tokenRequest);
+                embedToken = await pbiClient.EmbedToken.GenerateTokenAsync(tokenRequest);
                 // Paginated reports typically do not accept effective identities the same way - mark accordingly
                 isRlsEnabled = true;
                 effectiveIdentityApplied = true;
@@ -290,7 +356,7 @@ namespace BIEmbedSystem.Services
             EmbedToken embedToken;
 
             // Generate embed token for RDL report if dataset is not present
-            if (type == "PaginatedReport" )
+            if (type == "PaginatedReport")
             {
                 // Get Embed token for RDL Report
                 embedToken = await GetEmbedTokenForRDLReport(workspaceId, reportId);
@@ -330,7 +396,7 @@ namespace BIEmbedSystem.Services
                 EmbedToken = embedToken,
                 DatasetId = pbiReport.DatasetId,
                 ReportName = pbiReport.Name,
-                ReportDiscription =pbiReport.Description,
+                ReportDiscription = pbiReport.Description,
 
                 // NEW flags (add these properties to your EmbedParams DTO if not already present)
                 IsRlsEnabled = false,
@@ -853,7 +919,7 @@ namespace BIEmbedSystem.Services
             return embedToken;
         }
 
-        
+
         public async Task<EmbedToken> GetEmbedTokenForRDLReportV2_OnlyReportWorkspaceAsync(
         PowerBIClient pbiClient,
         Guid reportWorkspaceId, // e.g. c0cb7599-ec65-415f-a845-cc8fc3062be6
@@ -1108,110 +1174,110 @@ After doing one of the above, re-run token generation.";
             IEnumerable<string> emails,
             IEnumerable<string>? groupIds = null,
             bool shareToAll = false,
-            bool reshare = false)   
+            bool reshare = false)
+        {
+            try
             {
-                try
+                // ----------------------------
+                // 1️⃣ VALIDATION
+                // ----------------------------
+                if (string.IsNullOrWhiteSpace(workspaceId))
+                    throw new ArgumentException("Workspace ID cannot be empty.");
+
+                if (string.IsNullOrWhiteSpace(reportId))
+                    throw new ArgumentException("Report ID cannot be empty.");
+
+                if (emails == null || !emails.Any())
+                    throw new ArgumentException("At least one email is required.");
+
+                // Ensure “groups/me” is NOT used (My Workspace not allowed)
+                if (workspaceId.Equals("me", StringComparison.OrdinalIgnoreCase))
+                    throw new InvalidOperationException("Sharing reports from 'My Workspace' is not allowed by Power BI API.");
+
+                // ----------------------------
+                // 2️⃣ Build the request body
+                // ----------------------------
+                var payload = new
                 {
-                    // ----------------------------
-                    // 1️⃣ VALIDATION
-                    // ----------------------------
-                    if (string.IsNullOrWhiteSpace(workspaceId))
-                        throw new ArgumentException("Workspace ID cannot be empty.");
+                    emails = emails.ToArray(),
+                    groupIds = groupIds?.ToArray() ?? Array.Empty<string>(),
+                    shareToAll,
+                    reshare
+                };
 
-                    if (string.IsNullOrWhiteSpace(reportId))
-                        throw new ArgumentException("Report ID cannot be empty.");
+                var content = new StringContent(
+                    System.Text.Json.JsonSerializer.Serialize(payload),
+                    Encoding.UTF8,
+                    "application/json"
+                );
 
-                    if (emails == null || !emails.Any())
-                        throw new ArgumentException("At least one email is required.");
+                // ----------------------------
+                // 3️⃣ Acquire token
+                // ----------------------------
+                var credential = new ClientSecretCredential(
+                    azureAd.Value.TenantId,
+                    azureAd.Value.ClientId,
+                    azureAd.Value.ClientSecret
+                );
 
-                    // Ensure “groups/me” is NOT used (My Workspace not allowed)
-                    if (workspaceId.Equals("me", StringComparison.OrdinalIgnoreCase))
-                        throw new InvalidOperationException("Sharing reports from 'My Workspace' is not allowed by Power BI API.");
+                var token = await credential.GetTokenAsync(
+                    new TokenRequestContext(new[] { "https://analysis.windows.net/powerbi/api/.default" })
+                );
 
-                    // ----------------------------
-                    // 2️⃣ Build the request body
-                    // ----------------------------
-                    var payload = new
-                    {
-                        emails = emails.ToArray(),
-                        groupIds = groupIds?.ToArray() ?? Array.Empty<string>(),
-                        shareToAll,
-                        reshare
-                    };
+                using var httpClient = new HttpClient();
+                httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue("Bearer", token.Token);
 
-                    var content = new StringContent(
-                        System.Text.Json.JsonSerializer.Serialize(payload),
-                        Encoding.UTF8,
-                        "application/json"
-                    );
+                // ----------------------------
+                // 4️⃣ Try main cluster first
+                // ----------------------------
+                string baseUrl = "https://api.powerbi.com/";
+                string apiPath = $"v1.0/myorg/groups/{workspaceId}/reports/{reportId}/Share";
+                string initialUrl = $"{baseUrl}{apiPath}";
 
-                    // ----------------------------
-                    // 3️⃣ Acquire token
-                    // ----------------------------
-                    var credential = new ClientSecretCredential(
-                        azureAd.Value.TenantId,
-                        azureAd.Value.ClientId,
-                        azureAd.Value.ClientSecret
-                    );
+                var response = await httpClient.PostAsync(initialUrl, content);
 
-                    var token = await credential.GetTokenAsync(
-                        new TokenRequestContext(new[] { "https://analysis.windows.net/powerbi/api/.default" })
-                    );
-
-                    using var httpClient = new HttpClient();
-                    httpClient.DefaultRequestHeaders.Authorization =
-                        new AuthenticationHeaderValue("Bearer", token.Token);
-
-                    // ----------------------------
-                    // 4️⃣ Try main cluster first
-                    // ----------------------------
-                    string baseUrl = "https://api.powerbi.com/";
-                    string apiPath = $"v1.0/myorg/groups/{workspaceId}/reports/{reportId}/Share";
-                    string initialUrl = $"{baseUrl}{apiPath}";
-
-                    var response = await httpClient.PostAsync(initialUrl, content);
-
-                    // ----------------------------
-                    // 5️⃣ Handle Power BI cluster reroute (403 + home-cluster-uri)
-                    // ----------------------------
-                    if (response.StatusCode == HttpStatusCode.Forbidden &&
-                        response.Headers.TryGetValues("home-cluster-uri", out var clusterUris))
-                    {
-                        var clusterUri = clusterUris.FirstOrDefault();
-
-                        if (!string.IsNullOrWhiteSpace(clusterUri))
-                        {
-                            // Ensure trailing slash
-                            string fixedCluster =
-                                clusterUri.EndsWith("/") ? clusterUri : clusterUri + "/";
-
-                            string redirectUrl = $"{fixedCluster}{apiPath}";
-
-                            Console.WriteLine($"🔁 Retrying on correct cluster: {fixedCluster}");
-
-                            response = await httpClient.PostAsync(redirectUrl, content);
-                        }
-                    }
-
-                    // ----------------------------
-                    // 6️⃣ Return final result
-                    // ----------------------------
-                    if (response.IsSuccessStatusCode)
-                    {
-                        Console.WriteLine("✅ Power BI report shared successfully!");
-                        return true;
-                    }
-
-                    string apiError = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine($"❌ Power BI Share failed ({response.StatusCode}): {apiError}");
-                    return false;
-                }
-                catch (Exception ex)
+                // ----------------------------
+                // 5️⃣ Handle Power BI cluster reroute (403 + home-cluster-uri)
+                // ----------------------------
+                if (response.StatusCode == HttpStatusCode.Forbidden &&
+                    response.Headers.TryGetValues("home-cluster-uri", out var clusterUris))
                 {
-                    Console.WriteLine($"❌ SharePowerBiReportAsync Exception: {ex.Message}");
-                    throw;
+                    var clusterUri = clusterUris.FirstOrDefault();
+
+                    if (!string.IsNullOrWhiteSpace(clusterUri))
+                    {
+                        // Ensure trailing slash
+                        string fixedCluster =
+                            clusterUri.EndsWith("/") ? clusterUri : clusterUri + "/";
+
+                        string redirectUrl = $"{fixedCluster}{apiPath}";
+
+                        Console.WriteLine($"🔁 Retrying on correct cluster: {fixedCluster}");
+
+                        response = await httpClient.PostAsync(redirectUrl, content);
+                    }
                 }
+
+                // ----------------------------
+                // 6️⃣ Return final result
+                // ----------------------------
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine("✅ Power BI report shared successfully!");
+                    return true;
+                }
+
+                string apiError = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"❌ Power BI Share failed ({response.StatusCode}): {apiError}");
+                return false;
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ SharePowerBiReportAsync Exception: {ex.Message}");
+                throw;
+            }
+        }
 
         public async Task SendReportShareEmail(ShareReportRequest req)
         {

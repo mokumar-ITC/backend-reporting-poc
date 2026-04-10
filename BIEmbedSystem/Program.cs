@@ -103,12 +103,21 @@ builder.Services.AddScoped<ITranslationService, TranslationService>();
 builder.Services.AddHttpClient<IPowerBiService, PowerBiService>();
 builder.Services.AddScoped<IPowerBiService, PowerBiService>();
 builder.Services.AddScoped<ISemanticSchedulerService, SemanticSchedulerService>();
-
 builder.Services.Configure<EmailSettings>(
-    builder.Configuration.GetSection("EmailSettings"));
-
+builder.Configuration.GetSection("EmailSettings"));
+builder.Services.AddSingleton<XmlaSemanticService>();
 builder.Services.AddHostedService<CapacityScheduleMonitor>();
-
+builder.Services.AddScoped<IAiAgentService, AiAgentService>();
+builder.Services.AddHttpClient<DatasetTableServicev1>();
+builder.Services.AddHttpClient<DatasetTableService>();
+builder.Services.AddScoped<LakehouseTableService>();
+//builder.Services.AddScoped<FabricTableDataReader>();
+builder.Services.AddScoped<AiAgentService>();
+builder.Services.AddHttpClient("LlmServer", client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["LlmServer:BaseUrl"] ?? "http://localhost:3001");
+    client.Timeout = TimeSpan.FromSeconds(120);
+});
 // API Versioning
 builder.Services.AddApiVersioning(options =>
 {

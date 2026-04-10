@@ -45,6 +45,14 @@ namespace BIEmbedSystem.Core.Entities
         public int? RoleId { get; set; }
 
         public bool IsActive { get; set; }
-    }
 
+        // ✅ New fields for AI integration
+        public bool AiEnable { get; set; } = false;   // default = false
+        public string? AiAgentId { get; set; }        // NVARCHAR(100)
+
+        // ✅ Stores the full lakehouse config as JSON string
+        // e.g. {"lakehouse":"lh_acc_dev_gold","tables":[{"tableName":"sla_dim","columns":["sla_id"]}]}
+        [Column(TypeName = "nvarchar(max)")]
+        public string? LakehouseConfig { get; set; }
+    }
 }
