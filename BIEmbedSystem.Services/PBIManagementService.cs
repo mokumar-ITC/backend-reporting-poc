@@ -13,6 +13,7 @@ using System.Collections.Immutable;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -118,9 +119,77 @@ namespace BIEmbedSystem.Services
             .OrderBy(u => u.Order)   // 👈 sort DESC
             .ToListAsync();
         }
-        public async Task<PBINavigationManagement> GetPBINavigationManagementById( int id)
+        public async Task<PBINavigationManagementDto?> GetPBINavigationManagementById(int id)
         {
-            return await _db.NavigationManagements.Where(u => u.IsActive == true && u.Id==id).FirstOrDefaultAsync();
+            var item = await _db.NavigationManagements
+                .Where(u => u.IsActive == true && u.Id == id)
+                .FirstOrDefaultAsync();
+
+            if (item == null)
+                return null;
+
+            var dto = new PBINavigationManagementDto
+            {
+                Id = item.Id,
+                Name = item.Name,
+                ParentItem = item.ParentItem,
+                Group = item.Group,
+                Type = item.Type,
+                Icon = item.Icon,
+                Description = item.Description,
+                Order = item.Order,
+                IsDynamicBinding = item.IsDynamicBinding,
+                WorkspaceId = item.WorkspaceId,
+                ReportId = item.ReportId,
+                ReportPageNumber = item.ReportPageNumber,
+                ReportPageName = item.ReportPageName,
+                EmbedUrl = item.EmbedUrl,
+                DatasetId = item.DatasetId,
+                ShowDatasetHistoryPane = item.ShowDatasetHistoryPane,
+                ShowFilterPane = item.ShowFilterPane,
+                ShowContentPane = item.ShowContentPane,
+                ShowTitleDescription = item.ShowTitleDescription,
+                ReportSharingAllowed = item.ReportSharingAllowed,
+                ReportExportAllowed = item.ReportExportAllowed,
+                RoleId = item.RoleId,
+                IsActive = item.IsActive,
+                CreatedDate = item.CreatedDate,
+                CreatedBy = item.CreatedBy,
+                UpdatedDate = item.UpdatedDate,
+                UpdatedBy = item.UpdatedBy,
+
+                // ✅ AI fields
+                AiEnable = item.AiEnable,
+                AiAgentId = item.AiAgentId,
+                LakehouseConfig = item.LakehouseConfig,
+
+                // ✅ JSON → Object Mapping
+                LakehouseConfigMapped = item.AiEnable && !string.IsNullOrEmpty(item.LakehouseConfig)
+    ? DeserializeLakehouseConfig(item.LakehouseConfig)
+    : null
+            };
+
+            return dto;
+        }
+        private LakehouseConfigDto? DeserializeLakehouseConfig(string json)
+        {
+            try
+            {
+                // Step 1: detect double-encoded JSON
+                if (json.StartsWith("\""))
+                {
+                    json = JsonSerializer.Deserialize<string>(json);
+                }
+
+                // Step 2: actual deserialization
+                return JsonSerializer.Deserialize<LakehouseConfigDto>(
+                    json,
+                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            }
+            catch
+            {
+                return null;
+            }
         }
         public async Task<int> DeletePBINavigationManagementById(int id)
         {
@@ -129,65 +198,112 @@ namespace BIEmbedSystem.Services
                 .ExecuteDeleteAsync();
         }
 
-        public async Task<List<PBINavigationManagement>> GetUserMenuByGroup(List<int> roleIds)
+        public async Task<List<PBINavigationManagementDto>> GetUserMenuByGroup(List<int> roleIds)
         {
-            // Safety check
             if (roleIds == null || roleIds.Count == 0)
-                return new List<PBINavigationManagement>();
+                return new List<PBINavigationManagementDto>();
 
-            // 🔑 Admin / Super roles
             bool isAdmin = roleIds.Contains(1) || roleIds.Contains(2);
 
             IQueryable<PBINavigationManagement> query =
                 _db.NavigationManagements.Where(u => u.IsActive == true);
 
-            // 🔒 Apply role filter ONLY if not admin
             if (!isAdmin)
-            {
                 query = query.Where(u => u.RoleId.HasValue && roleIds.Contains(u.RoleId.Value) && u.Id != 43);
-            }
             else
-            {
                 query = query.Where(u => u.Id != 43);
-            }
-            // ✅ APPLY ORDERING FOR BOTH CASES
+
             query = query.OrderBy(u => u.Order);
 
-            return await query.ToListAsync();
-        }
+            var items = await query.ToListAsync();
 
-        public async Task<string> SavePBINavigationManagement(PBINavigationManagement navigationManagement,string userEmail)
+            // ✅ Map LakehouseConfig JSON string → typed object
+            return items.Select(item =>
+            {
+                var dto = new PBINavigationManagementDto
+                {
+                    // copy all base fields
+                    Id = item.Id,
+                    Name = item.Name,
+                    ParentItem = item.ParentItem,
+                    Group = item.Group,
+                    Type = item.Type,
+                    Icon = item.Icon,
+                    Description = item.Description,
+                    Order = item.Order,
+                    IsDynamicBinding = item.IsDynamicBinding,
+                    WorkspaceId = item.WorkspaceId,
+                    ReportId = item.ReportId,
+                    ReportPageNumber = item.ReportPageNumber,
+                    ReportPageName = item.ReportPageName,
+                    EmbedUrl = item.EmbedUrl,
+                    DatasetId = item.DatasetId,
+                    ShowDatasetHistoryPane = item.ShowDatasetHistoryPane,
+                    ShowFilterPane = item.ShowFilterPane,
+                    ShowContentPane = item.ShowContentPane,
+                    ShowTitleDescription = item.ShowTitleDescription,
+                    ReportSharingAllowed = item.ReportSharingAllowed,
+                    ReportExportAllowed = item.ReportExportAllowed,
+                    RoleId = item.RoleId,
+                    IsActive = item.IsActive,
+                    CreatedDate = item.CreatedDate,
+                    CreatedBy = item.CreatedBy,
+                    UpdatedDate = item.UpdatedDate,
+                    UpdatedBy = item.UpdatedBy,
+
+                    // ✅ AI fields
+                    AiEnable = item.AiEnable,
+                    AiAgentId = item.AiAgentId,
+                    LakehouseConfig = item.LakehouseConfig,
+
+                    // ✅ Deserialize JSON string → typed object for UI consumption
+                    LakehouseConfigMapped = item.AiEnable && !string.IsNullOrEmpty(item.LakehouseConfig)
+                        ? JsonSerializer.Deserialize<LakehouseConfigDto>(
+                            item.LakehouseConfig,
+                            new JsonSerializerOptions { PropertyNameCaseInsensitive = true })
+                        : null
+                };
+
+                return dto;
+            }).ToList();
+        }
+        public async Task<string> SavePBINavigationManagement(PBINavigationManagement navigationManagement, string userEmail)
         {
             if (navigationManagement == null)
             {
                 _logger.LogError("Save Navigation Management called with null or empty collection.");
                 return "Navigation Management cannot be null or empty.";
             }
-            var existRules = await _db.NavigationManagements.Where(u => u.Id == navigationManagement.Id 
-            && u.ParentItem== navigationManagement.ParentItem
-            && u.IsActive == true).FirstOrDefaultAsync();
-            //check name is already Exist or not
-            //var checkName = await _db.NavigationManagements.Where(u => u.Name == navigationManagement.Name).FirstOrDefaultAsync();
-            //if (checkName != null)
-            //{
-            //    return "Name Already exist";
-            //}
+
+            var existRules = await _db.NavigationManagements
+                .Where(u => u.Id == navigationManagement.Id
+                    && u.ParentItem == navigationManagement.ParentItem
+                    && u.IsActive == true)
+                .FirstOrDefaultAsync();
+
             if (existRules == null)
             {
                 navigationManagement.CreatedDate = DateTime.UtcNow;
                 navigationManagement.UpdatedDate = null;
                 navigationManagement.CreatedBy = userEmail;
                 navigationManagement.IsActive = true;
-                navigationManagement.RoleId = navigationManagement.RoleId !=0 ? navigationManagement.RoleId : 5;
+                navigationManagement.RoleId = navigationManagement.RoleId != 0 ? navigationManagement.RoleId : 5;
                 navigationManagement.Type = navigationManagement.Type != "" ? navigationManagement.Type : "Report";
+
+                // ✅ AI fields on insert
+                navigationManagement.AiEnable = navigationManagement.AiEnable;
+                navigationManagement.AiAgentId = navigationManagement.AiAgentId;
+                navigationManagement.LakehouseConfig = navigationManagement.AiEnable
+                    ? navigationManagement.LakehouseConfig
+                    : null; // clear config if AI disabled
+
                 _db.NavigationManagements.Add(navigationManagement);
-                await _db.SaveChangesAsync(); // Save changes to DB       
+                await _db.SaveChangesAsync();
                 _logger.LogInformation("Saved successfully.");
                 return "success";
             }
             else
             {
-                // Load existing record
                 var result = await _db.NavigationManagements
                     .FirstOrDefaultAsync(u => u.Id == navigationManagement.Id);
 
@@ -202,7 +318,7 @@ namespace BIEmbedSystem.Services
                 result.ReportId = navigationManagement?.ReportId;
                 result.ReportPageNumber = navigationManagement?.ReportPageNumber;
                 result.EmbedUrl = navigationManagement.EmbedUrl;
-                result.DatasetId = navigationManagement != null ? navigationManagement.DatasetId :  result.DatasetId;
+                result.DatasetId = navigationManagement != null ? navigationManagement.DatasetId : result.DatasetId;
                 result.ShowDatasetHistoryPane = navigationManagement.ShowDatasetHistoryPane;
                 result.ShowFilterPane = navigationManagement.ShowFilterPane;
                 result.ShowContentPane = navigationManagement.ShowContentPane;
@@ -211,22 +327,26 @@ namespace BIEmbedSystem.Services
                 result.ReportExportAllowed = navigationManagement.ReportExportAllowed;
                 result.RoleId = navigationManagement.RoleId != 0 ? navigationManagement.RoleId : 5;
                 result.Type = navigationManagement.Type != "" ? navigationManagement.Type : "Report";
+
+                // ✅ AI fields on update
+                result.AiEnable = navigationManagement.AiEnable;
+                result.AiAgentId = navigationManagement.AiAgentId;
+                result.LakehouseConfig = navigationManagement.AiEnable
+                    ? navigationManagement.LakehouseConfig
+                    : null; // clear config if AI was disabled
+
                 result.UpdatedDate = DateTime.UtcNow;
                 result.UpdatedBy = userEmail;
                 result.IsActive = result.IsActive;
                 result.CreatedDate = result.CreatedDate;
                 result.CreatedBy = result.CreatedBy;
-                result.UpdatedDate= DateTime.UtcNow;
-                result.UpdatedBy = userEmail;
+
                 _db.NavigationManagements.Update(result);
-                await _db.SaveChangesAsync(); // Save changes to DB       
+                await _db.SaveChangesAsync();
                 _logger.LogInformation("Update successfully.");
                 return "success";
             }
-
-                
         }
-
         public async Task<bool> SaveNavigationOrderAsync(
         List<NavigationOrderDto> navigationOrders,
         string userEmail)

@@ -51,6 +51,7 @@ namespace BIEmbedSystem.Core.Entities
         public string ReportName { get; set; }
         public string ReportDiscription { get; set; }
         public string AssetId { get; set; }
+        public string QnaEmbedUrl { get; set; }
 
         // NEW:
         public bool IsRlsEnabled { get; set; }   // whether this report/dataset has RLS turned on (source of truth: DB or dataset metadata)
