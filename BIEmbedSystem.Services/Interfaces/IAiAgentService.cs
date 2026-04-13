@@ -16,5 +16,6 @@ namespace BIEmbedSystem.Services.Interfaces
         //Task DeleteAgentAsync(Guid id);
         // ✅ New
         Task<AiQueryResponseDto> QueryAsync(AiQueryRequestDto dto);
+        Task<AiFoundryResponseDto> AskFoundryAgentAsync(AiFoundryRequestDto dto);
     }
 }

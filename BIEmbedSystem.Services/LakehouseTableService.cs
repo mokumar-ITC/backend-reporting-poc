@@ -366,10 +366,12 @@ namespace BIEmbedSystem.Services
         {
             _logger.LogInformation("Executing raw query on lakehouse '{LakehouseName}'", lakehouseName);
 
-            // Safety check — only allow SELECT
-            if (!sql.TrimStart().StartsWith("SELECT", StringComparison.OrdinalIgnoreCase))
+            if (!System.Text.RegularExpressions.Regex.IsMatch(
+                sql?.TrimStart() ?? string.Empty,
+                @"^(SELECT|WITH)\s",
+                System.Text.RegularExpressions.RegexOptions.IgnoreCase))
             {
-                _logger.LogWarning("Rejected non-SELECT query on lakehouse '{LakehouseName}': {Sql}", lakehouseName, sql);
+                _logger.LogWarning("Rejected non-read query on lakehouse '{LakehouseName}': {Sql}", lakehouseName, sql);
                 throw new ApplicationException("Only SELECT queries are permitted.");
             }
 
@@ -378,61 +380,60 @@ namespace BIEmbedSystem.Services
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using var connection = new SqlConnection(connectionString);
+                await connection.OpenAsync();
+                _logger.LogInformation("Connection opened to lakehouse '{LakehouseName}'", lakehouseName);
+
+                using var command = new SqlCommand(sql, connection);
+                command.CommandTimeout = 120;
+
+                using var reader = await command.ExecuteReaderAsync();
+                while (await reader.ReadAsync())
                 {
-                    await connection.OpenAsync();
-                    _logger.LogInformation("Connection opened to lakehouse '{LakehouseName}'", lakehouseName);
+                    var row = new Dictionary<string, object?>();
 
-                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        command.CommandTimeout = 120;
+                        var columnName = reader.GetName(i);
+                        var value = reader.IsDBNull(i) ? null : reader.GetValue(i);
 
-                        using (SqlDataReader reader = await command.ExecuteReaderAsync())
+                        _logger.LogDebug("Column {Column} runtime type: {Type}", columnName, value?.GetType().FullName ?? "null");
+
+                        row[columnName] = value switch
                         {
-                            while (await reader.ReadAsync())
-                            {
-                                var row = new Dictionary<string, object?>();
-
-                                for (int i = 0; i < reader.FieldCount; i++)
-                                {
-                                    var columnName = reader.GetName(i);
-                                    var value = reader.IsDBNull(i) ? null : reader.GetValue(i);
-
-                                    // ✅ Handle types that don't serialize well to JSON
-                                    row[columnName] = value switch
-                                    {
-                                        DateTime dt => dt.ToString("yyyy-MM-ddTHH:mm:ss"),
-                                        DateTimeOffset dto => dto.ToString("yyyy-MM-ddTHH:mm:sszzz"),
-                                        byte[] bytes => Convert.ToBase64String(bytes),
-                                        Guid g => g.ToString(),
-                                        _ => value
-                                    };
-                                }
-
-                                results.Add(row);
-                            }
-                        }
+                            null => null,
+                            DBNull => null,
+                            string s => s,
+                            int n => n,
+                            long l => l,
+                            short sh => sh,
+                            bool b => b,
+                            double d => d,
+                            float f => f,
+                            decimal dec => dec,
+                            DateTime dt => dt.ToString("yyyy-MM-ddTHH:mm:ss"),
+                            DateTimeOffset dto => dto.ToString("yyyy-MM-ddTHH:mm:sszzz"),
+                            TimeSpan ts => ts.ToString(),
+                            Guid g => g.ToString(),
+                            byte[] bytes => Convert.ToBase64String(bytes),
+                            _ => value.ToString()
+                        };
                     }
+
+                    results.Add(row);
                 }
 
-                _logger.LogInformation(
-                    "ExecuteRawQueryAsync completed for lakehouse '{LakehouseName}'. Rows returned: {Count}",
-                    lakehouseName, results.Count);
-
+                _logger.LogInformation("ExecuteRawQueryAsync completed for lakehouse '{LakehouseName}'. Rows returned: {Count}", lakehouseName, results.Count);
                 return results;
             }
             catch (SqlException ex)
             {
-                _logger.LogError(ex,
-                    "SQL error executing raw query on lakehouse '{LakehouseName}'. Query: {Sql}",
-                    lakehouseName, sql);
+                _logger.LogError(ex, "SQL error executing raw query on lakehouse '{LakehouseName}'. Query: {Sql}", lakehouseName, sql);
                 throw new ApplicationException($"SQL error on lakehouse '{lakehouseName}': {ex.Message}");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex,
-                    "Unexpected error executing raw query on lakehouse '{LakehouseName}'.",
-                    lakehouseName);
+                _logger.LogError(ex, "Unexpected error executing raw query on lakehouse '{LakehouseName}'.", lakehouseName);
                 throw;
             }
         }
@@ -468,7 +469,7 @@ namespace BIEmbedSystem.Services
             using var connection = new SqlConnection(connectionString);
             await connection.OpenAsync();
 
-            var query = $"SELECT TOP {topN} * FROM [{tableName}]";
+            var query = $"SELECT TOP {topN} * FROM [ar].[{tableName}]";
 
             using var command = new SqlCommand(query, connection);
             command.CommandTimeout = 120; // Fabric can be slow on cold start
@@ -504,49 +505,116 @@ namespace BIEmbedSystem.Services
             return dataTable;
         }
 
-        
-        public async Task<DataTable> GetLakehouseTableColumnNamesAsync(string lakehouseName, string tableName)
+
+        public async Task<List<string>> GetLakehouseTableColumnNamesAsync(
+        string lakehouseName,
+        string tableName)
+            {
+                string connectionString = BuildConnectionString(lakehouseName);
+
+                if (string.IsNullOrWhiteSpace(connectionString))
+                    throw new ApplicationException(
+                        $"Could not build connection string for lakehouse '{lakehouseName}'.");
+
+                var columns = new List<string>();
+
+                using var connection = new SqlConnection(connectionString);
+                await connection.OpenAsync();
+
+                string query = @"
+            SELECT COLUMN_NAME
+            FROM INFORMATION_SCHEMA.COLUMNS
+            WHERE TABLE_NAME = @tableName
+            ORDER BY ORDINAL_POSITION";
+
+                using var command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@tableName", tableName);
+                command.CommandTimeout = 120;
+
+                using var reader = await command.ExecuteReaderAsync();
+
+                while (await reader.ReadAsync())
+                {
+                    columns.Add(reader["COLUMN_NAME"].ToString()!);
+                }
+
+                return columns;
+            }
+
+        public async Task<Dictionary<string, Dictionary<string, string>>> GetColumnTypesAsync(
+        LakehouseConfigWithTypeDto lakehouseConfig)
         {
-            // ✅ Build connection string dynamically from lakehouse name
-            string connectionString = BuildConnectionString(lakehouseName);
-            if (string.IsNullOrEmpty(connectionString))
-                throw new ApplicationException($"Could not build connection string for lakehouse '{lakehouseName}'.");
-            var dataTable = new DataTable();
+            string connectionString = BuildConnectionString(lakehouseConfig.Lakehouse);
+            if (string.IsNullOrWhiteSpace(connectionString))
+                throw new ApplicationException(
+                    $"Could not build connection string for lakehouse '{lakehouseConfig.Lakehouse}'.");
+
+            // Result: { tableName -> { columnName -> dataType } }
+            var result = new Dictionary<string, Dictionary<string, string>>();
+
             using var connection = new SqlConnection(connectionString);
             await connection.OpenAsync();
-            var query = $"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{tableName}'";
-            using var command = new SqlCommand(query, connection);
-            command.CommandTimeout = 120; // Fabric can be slow on cold start
-            using var adapter = new SqlDataAdapter(command);
-            adapter.Fill(dataTable);
-            return dataTable;
+
+            foreach (var table in lakehouseConfig.Tables)
+            {
+                var columnTypes = new Dictionary<string, string>();
+
+                // Build IN clause placeholders for specific columns
+                var paramNames = table.Columns
+                    .Select((_, i) => $"@col{i}")
+                    .ToList();
+
+                string inClause = string.Join(", ", paramNames);
+
+                string query = $@"
+            SELECT COLUMN_NAME, DATA_TYPE
+            FROM INFORMATION_SCHEMA.COLUMNS
+            WHERE TABLE_NAME = @tableName
+            AND COLUMN_NAME IN ({inClause})
+            ORDER BY ORDINAL_POSITION";
+
+                using var command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@tableName", table.TableName);
+                command.CommandTimeout = 120;
+
+                // Add each column as a parameter
+                for (int i = 0; i < table.Columns.Count; i++)
+                {
+                    command.Parameters.AddWithValue(paramNames[i], table.Columns[i]);
+                }
+
+                using var reader = await command.ExecuteReaderAsync();
+                while (await reader.ReadAsync())
+                {
+                    string columnName = reader["COLUMN_NAME"].ToString()!;
+                    string dataType = reader["DATA_TYPE"].ToString()!;
+                    columnTypes[columnName] = dataType;
+                }
+
+                result[table.TableName] = columnTypes;
+            }
+
+            return result;
         }
 
-        public async Task<DataTable> GetTablesByLakehouseAsync(string lakehouseName)
+        public async Task<List<string>> GetTablesByLakehouseAsync(string lakehouseName)
         {
-            string connectionString = BuildConnectionString(lakehouseName);
-            DataTable dataTable = new DataTable();
-            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            var tables = new List<string>();
+
+            using var conn = new SqlConnection(BuildConnectionString(lakehouseName));
+            await conn.OpenAsync();
+
+            string query = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE'";
+
+            using var cmd = new SqlCommand(query, conn);
+            using var reader = await cmd.ExecuteReaderAsync();
+
+            while (await reader.ReadAsync())
             {
-                await sqlConnection.OpenAsync(); // Open the database connection
-
-                // Construct the SQL query. Parameterized queries are crucial for security (SQL injection prevention).
-                // Using square brackets around table name in case it contains special characters or spaces.
-                string query = $" SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'";
-                _logger.LogDebug($"Executing SQL query: {query}");
-
-                using (SqlCommand command = new SqlCommand(query, sqlConnection))
-                {
-                    // Execute the query and load the results into a DataTable
-                    using (SqlDataReader reader = await command.ExecuteReaderAsync())
-                    {
-                        dataTable.Load(reader); // Populates the DataTable with query results
-                    }
-                }
+                tables.Add(reader["TABLE_NAME"].ToString());
             }
-            // Log successful data retrieval
-            _logger.LogInformation($"Successfully fetched {dataTable.Rows.Count} rows table.");
-            return dataTable;
+
+            return tables;
         }
     }
 }

@@ -12,6 +12,14 @@ namespace BIEmbedSystem.Services.DTO
         public string TableName { get; set; } = string.Empty;
         public List<string> Columns { get; set; } = new();
     }
+    public class TableConfig
+    {
+        public string TableName { get; set; } = string.Empty;
+        public List<string> Columns { get; set; } = new();
+
+        // Populated after fetching from DB
+        public Dictionary<string, string> ColumnTypes { get; set; } = new();
+    }
 
     public class LakehouseConfigDto
     {
@@ -19,6 +27,11 @@ namespace BIEmbedSystem.Services.DTO
         public List<LakehouseTableDto> Tables { get; set; } = new();
     }
 
+    public class LakehouseConfigWithTypeDto
+    {
+        public string Lakehouse { get; set; } = string.Empty;
+        public List<TableConfig> Tables { get; set; } = new();
+    }
     public class PBINavigationManagementDto : PBINavigationManagement
     {
         // Deserialised version of LakehouseConfig string
