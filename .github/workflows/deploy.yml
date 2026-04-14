@@ -26,10 +26,10 @@ jobs:
     - name: Create appsettings.Production.json
       shell: powershell
       env:
-        APPSETTINGS_PRODUCTION: ${{ secrets.APPSETTINGS_PRODUCTION }}
+        APPSETTINGS_PRODUCTION_1: ${{ secrets.APPSETTINGS_PRODUCTION_1 }}
       run: |
-        if ([string]::IsNullOrWhiteSpace($env:APPSETTINGS_PRODUCTION)) {
-            Write-Error "APPSETTINGS_PRODUCTION secret is empty or missing"
+        if ([string]::IsNullOrWhiteSpace($env:APPSETTINGS_PRODUCTION_1)) {
+            Write-Error "APPSETTINGS_PRODUCTION_1 secret is empty or missing"
             exit 1
         }
 
@@ -37,7 +37,7 @@ jobs:
 
         New-Item -ItemType Directory -Path "BIEmbedSystem" -Force | Out-Null
 
-        $env:APPSETTINGS_PRODUCTION | Out-File -FilePath $path -Encoding utf8 -Force
+        $env:APPSETTINGS_PRODUCTION_1 | Out-File -FilePath $path -Encoding utf8 -Force
 
         Write-Host "appsettings.Production.json created at $path"
 

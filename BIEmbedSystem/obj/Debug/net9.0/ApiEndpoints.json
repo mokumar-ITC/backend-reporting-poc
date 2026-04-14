@@ -22,6 +22,46 @@
   },
   {
     "ContainingType": "BIEmbedSystem.API.Controllers.AiAgentController",
+    "Method": "Ask",
+    "RelativePath": "api/v1/AiAgent/ask",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "BIEmbedSystem.Services.DTO.AiFoundryRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.AiFoundryResponseDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.AiAgentController",
     "Method": "Query",
     "RelativePath": "api/v1/AiAgent/query",
     "HttpMethod": "POST",
@@ -3947,6 +3987,46 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BIEmbedSystem.API.Controllers.AiAgentController",
+    "Method": "Ask",
+    "RelativePath": "api/v2/AiAgent/ask",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "BIEmbedSystem.Services.DTO.AiFoundryRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BIEmbedSystem.Services.DTO.AiFoundryResponseDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      }
+    ]
   },
   {
     "ContainingType": "BIEmbedSystem.API.Controllers.AiAgentController",

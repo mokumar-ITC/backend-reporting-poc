@@ -113,11 +113,6 @@ builder.Services.AddHttpClient<DatasetTableService>();
 builder.Services.AddScoped<LakehouseTableService>();
 //builder.Services.AddScoped<FabricTableDataReader>();
 builder.Services.AddScoped<AiAgentService>();
-builder.Services.AddHttpClient("LlmServer", client =>
-{
-    client.BaseAddress = new Uri(builder.Configuration["LlmServer:BaseUrl"] ?? "http://localhost:3001");
-    client.Timeout = TimeSpan.FromSeconds(120);
-});
 // API Versioning
 builder.Services.AddApiVersioning(options =>
 {

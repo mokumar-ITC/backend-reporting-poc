@@ -77,5 +77,29 @@ namespace BIEmbedSystem.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "An unexpected error occurred.");
             }
         }
+
+        [HttpPost("ask")]
+        [ProducesResponseType(typeof(AiFoundryResponseDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Ask([FromBody] AiFoundryRequestDto dto)
+        {
+            if (string.IsNullOrWhiteSpace(dto.UserMessage))
+                return BadRequest("UserMessage cannot be empty.");
+
+            try
+            {
+                var result = await _service.AskFoundryAgentAsync(dto);
+
+                if (!result.Success)
+                    return StatusCode(StatusCodes.Status500InternalServerError, result.ErrorMessage);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "An unexpected error occurred.");
+            }
+        }
     }
 }
